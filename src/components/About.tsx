@@ -3,19 +3,21 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { DIRECTOR_AVATAR } from '../data';
-import { Shield, Clock, Award, Hammer } from 'lucide-react';
+import { DIRECTOR_AVATAR } from "../data";
+import { Shield, Clock, Award, Hammer } from "lucide-react";
 
 export default function About() {
   return (
-    <section id="sobre" className="relative py-24 bg-[#0d0e0e] border-y border-[#1f2020] overflow-hidden">
+    <section
+      id="sobre"
+      className="relative py-24 bg-[#0d0e0e] border-y border-[#1f2020] overflow-hidden"
+    >
       {/* Background Accents */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-brand-cyan/2 blur-[100px] pointer-events-none rounded-full" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-teal/5 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
           {/* Portrait Container with Industrial Framings - Columns 1 to 5 */}
           <div className="lg:col-span-5 relative group flex justify-center">
             {/* Geometric outer borders mimicking blueprints */}
@@ -27,7 +29,7 @@ export default function About() {
             <div className="relative w-full max-w-sm aspect-5/6 bg-[#1b1c1c] overflow-hidden border border-[#343535] group-hover:border-brand-cyan/40 transition-colors duration-500">
               <img
                 src={DIRECTOR_AVATAR}
-                alt="Eng. Adrian M. Silveira, Fundador & Diretor Técnico"
+                alt="Eng. André Mclelry, Fundador & Diretor Técnico"
                 id="director-profile-photo"
                 className="w-full h-full object-cover object-center transition-all duration-700 scale-100 group-hover:scale-105 filter brightness-90 group-hover:brightness-105 contrast-105 group-hover:contrast-100"
               />
@@ -39,10 +41,10 @@ export default function About() {
                   FUNDADOR & DIRETOR TÉCNICO
                 </span>
                 <h3 className="font-sans text-xl font-bold text-white leading-tight">
-                  Eng. Adrian M. Silveira
+                  Eng. André Mclelry
                 </h3>
                 <p className="font-sans text-xs text-gray-400 mt-1">
-                  CREA-SP: 507.892.422-0
+                  CREA-SP: 00000000
                 </p>
               </div>
             </div>
@@ -59,14 +61,26 @@ export default function About() {
 
             <h2 className="font-sans text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-none">
               AM ENGENHARIA: <br />
-              <span className="text-linear-to-r from-white to-gray-400">MATERIALIZANDO VISÕES.</span>
+              <span className="text-linear-to-r from-white to-gray-400">
+                MATERIALIZANDO VISÕES.
+              </span>
             </h2>
 
             <p className="font-sans text-base text-gray-300 leading-relaxed font-light">
-              Com mais de 10 anos de experiência acumulada no mercado paulista, a AM Engenharia foi fundada com a missão clara de devolver o ativo mais escasso na construção civil: a <span className="text-white font-semibold">paz de espírito</span>.
+              Com mais de 10 anos de experiência acumulada no mercado paulista,
+              a AM Engenharia foi fundada com a missão clara de devolver o ativo
+              mais escasso na construção civil: a{" "}
+              <span className="text-white font-semibold">paz de espírito</span>.
             </p>
             <p className="font-sans text-base text-gray-300 leading-relaxed font-light">
-              Diferente de construtoras externas estruturais que operam com orçamentos instáveis, nós baseamos nossa governança e reputação no tripé da <span className="text-brand-cyan font-semibold">precisão numérica</span>, mitigando despesas redundantes através de metodologia BIM em todas as frentes de cálculo e execução.
+              Diferente de construtoras externas estruturais que operam com
+              orçamentos instáveis, nós baseamos nossa governança e reputação no
+              tripé da{" "}
+              <span className="text-brand-cyan font-semibold">
+                precisão numérica
+              </span>
+              , mitigando despesas redundantes através de metodologia BIM em
+              todas as frentes de cálculo e execução.
             </p>
 
             {/* Industrial Separation Line */}
@@ -74,7 +88,6 @@ export default function About() {
 
             {/* 3 Core Pillars Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              
               {/* Pillar 1 */}
               <div className="flex flex-col space-y-2">
                 <div className="flex items-center space-x-2">
@@ -84,7 +97,9 @@ export default function About() {
                   </h4>
                 </div>
                 <p className="font-sans text-xs text-gray-400 leading-relaxed font-light">
-                  Iniciamos projetos com planilha orçamentária detalhada que discrimina cada quilo de cimento e metro de fiação. Sem reajustes arbitrários.
+                  Iniciamos projetos com planilha orçamentária detalhada que
+                  discrimina cada quilo de cimento e metro de fiação. Sem
+                  reajustes arbitrários.
                 </p>
               </div>
 
@@ -97,7 +112,9 @@ export default function About() {
                   </h4>
                 </div>
                 <p className="font-sans text-xs text-gray-400 leading-relaxed font-light">
-                  Análise diária do caminho crítico do cronograma. Entregar o projeto no dia avençado é um dogma de nossa assinatura profissional.
+                  Análise diária do caminho crítico do cronograma. Entregar o
+                  projeto no dia avençado é um dogma de nossa assinatura
+                  profissional.
                 </p>
               </div>
 
@@ -110,14 +127,13 @@ export default function About() {
                   </h4>
                 </div>
                 <p className="font-sans text-xs text-gray-400 leading-relaxed font-light">
-                  Controle tecnológico de compressão do concreto, rastreabilidade técnica integral e mão de obra calibrada de altíssimo padrão.
+                  Controle tecnológico de compressão do concreto,
+                  rastreabilidade técnica integral e mão de obra calibrada de
+                  altíssimo padrão.
                 </p>
               </div>
-
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

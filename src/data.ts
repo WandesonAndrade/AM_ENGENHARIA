@@ -5,38 +5,6 @@
 
 import { Project, Service, Testimonial } from "./types";
 
-// Import generated architectural and professional assets
-
-// @ts-ignore
-import ARQ_Projeto from "./assets/images/ARQ_Projeto.jpg";
-// @ts-ignore
-import ARQ_Projeto1 from "./assets/images/ARQ_Projeto1.jpg";
-
-// @ts-ignore
-import PROJ_Gas from "./assets/images/PROJ_Gas.jpg";
-
-// @ts-ignore
-import PROJ_CFTV_RCE from "./assets/images/PROJ_CFTV_RCE.jpg";
-// @ts-ignore
-import PROJ_CFTV_RCE1 from "./assets/images/PROJ_CFTV_RCE1.jpg";
-// @ts-ignore
-import PROJ_CFTV_RCE2 from "./assets/images/PROJ_CFTV_RCE2.jpg";
-// @ts-ignore
-import PROJ_CFTV_RCE3 from "./assets/images/PROJ_CFTV_RCE3.jpg";
-
-// @ts-ignore
-import PROJ_SPDA from "./assets/images/PROJ_SPDA.jpg";
-
-// @ts-ignore
-import PROJ_HIDROSSANITARIO from "./assets/images/PROJ_HIDROSSANITARIO.jpg";
-
-// @ts-ignore
-import PROJ_COMBATE_INCENDIO from "./assets/images/PROJ_COMBATE_INCENDIO.jpg";
-// @ts-ignore
-import PROJ_COMBATE_PLANTAS from "./assets/images/PROJ_COMBATE_PLANTAS.jpg";
-// @ts-ignore
-import PROJ_COMBATE_DETALHES from "./assets/images/PROJ_COMBATE_DETALHES.jpg";
-
 export const HERO_BG_IMAGE =
   "/src/assets/images/hero_background_1781810209909.jpg";
 export const DIRECTOR_AVATAR =
@@ -149,8 +117,12 @@ export const PROJECTS: Project[] = [
     categoryLabel: "Residencial",
     description:
       "Levantamento cadastral completo sob metodologia As-Built de arquitetura predial e detalhamento executivo de esquadrias e plantas de situação.",
-    image: ARQ_Projeto,
-    images: [ARQ_Projeto, ARQ_Projeto1],
+    image:
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/ARQ_Projeto.jpg",
+    images: [
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/ARQ_Projeto.jpg",
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/ARQ_Projeto1.jpg",
+    ],
     location: "Vila Lobão, Caxias - MA",
     year: "2026",
     area: "497 m²",
@@ -168,8 +140,11 @@ export const PROJECTS: Project[] = [
     categoryLabel: "Instalações / Gás",
     description:
       "Projeto executivo detalhado de instalações de gás, contemplando central de gás, central de medição e distribuição para pavimentos e cobertura, além do quadro quantitativo completo de materiais.",
-    image: PROJ_Gas,
-    images: [PROJ_Gas],
+    image:
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_Gas.jpg",
+    images: [
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_Gas.jpg",
+    ],
     location: "A definir", // O texto extraído não especifica a localização
     year: "2026",
     area: "N/A", // Área não especificada no detalhamento
@@ -187,8 +162,14 @@ export const PROJECTS: Project[] = [
     categoryLabel: "Tecnologia / Segurança",
     description:
       "Projeto executivo detalhado de sistema de CFTV e Rede de Cabeamento Estruturado (RCE)[cite: 2], englobando distribuição no térreo e pavimentos adicionais[cite: 2], vistas isométricas[cite: 2], detalhamento de rack[cite: 2] e lista completa de materiais[cite: 2].",
-    image: PROJ_CFTV_RCE,
-    images: [PROJ_CFTV_RCE, PROJ_CFTV_RCE1, PROJ_CFTV_RCE2, PROJ_CFTV_RCE3],
+    image:
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_CFTV_RCE.jpg",
+    images: [
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_CFTV_RCE.jpg",
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_CFTV_RCE1.jpg",
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_CFTV_RCE2.jpg",
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_CFTV_RCE3.jpg",
+    ],
     location: "A definir",
     year: "2026",
     area: "N/A",
@@ -207,8 +188,11 @@ export const PROJECTS: Project[] = [
     categoryLabel: "Elétrica / SPDA",
     description:
       "Projeto executivo de SPDA (Sistema de Proteção contra Descargas Atmosféricas), contemplando o detalhamento elétrico em corte (fachada norte) e vista geral isométrica da edificação[cite: 3].",
-    image: PROJ_SPDA,
-    images: [PROJ_SPDA],
+    image:
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_SPDA.jpg",
+    images: [
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_SPDA.jpg",
+    ],
     location: "A definir",
     year: "2026",
     area: "N/A",
@@ -226,8 +210,11 @@ export const PROJECTS: Project[] = [
     categoryLabel: "Hidrossanitário",
     description:
       "Projeto executivo de instalações hidrossanitárias, incluindo planta baixa de água fria, detalhes de áreas úmidas (cozinha, área de serviço, gourmet) e esquema de distribuição para pavimentos tipo e cobertura[cite: 4].",
-    image: PROJ_HIDROSSANITARIO,
-    images: [PROJ_HIDROSSANITARIO],
+    image:
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_HIDROSSANITARIO.jpg",
+    images: [
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_HIDROSSANITARIO.jpg",
+    ],
     location: "Vila Nova",
     year: "2026",
     area: "N/A",
@@ -245,11 +232,12 @@ export const PROJECTS: Project[] = [
     categoryLabel: "Segurança / Combate a Incêndio",
     description:
       "Projeto executivo de sistemas de combate a incêndio, incluindo planta geral de instalações, detalhamento de hidrantes, casa de bombas, sinalização de emergência e esquemas isométricos[cite: 5].",
-    image: PROJ_COMBATE_INCENDIO,
+    image:
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_COMBATE_INCENDIO.jpg",
     images: [
-      PROJ_COMBATE_INCENDIO,
-      PROJ_COMBATE_PLANTAS,
-      PROJ_COMBATE_DETALHES,
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_COMBATE_INCENDIO.jpg",
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_COMBATE_PLANTAS.jpg",
+      "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/PROJ_COMBATE_DETALHES.jpg",
     ],
     location: "A definir",
     year: "2026",
