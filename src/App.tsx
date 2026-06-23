@@ -8,19 +8,24 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Process from './components/Process';
-import Portfolio from './components/Portfolio';
-import BudgetCalculator from './components/BudgetCalculator';
-import Testimonials from './components/Testimonials';
-import Footer from './components/Footer';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import TechBentoGrid from "./components/TechBentoGrid";
+import Services from "./components/Services";
+import Process from "./components/Process";
+import Portfolio from "./components/Portfolio";
+import BudgetCalculator from "./components/BudgetCalculator";
+import Testimonials from "./components/Testimonials";
+import Footer from "./components/Footer";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 export default function App() {
   return (
     <div className="bg-[#121414] min-h-screen text-white select-none selection:bg-brand-cyan/20 selection:text-brand-cyan">
+      {/* Floating contact hub */}
+      <FloatingWhatsApp />
+
       {/* Structural fixed navigation */}
       <Navbar />
 
@@ -30,6 +35,8 @@ export default function App() {
 
         {/* Company profile & Core values */}
         <About />
+
+        {/* Premium Bento Grid - BIM & Engineering Tech */}
 
         {/* Technical services with blueprint detail triggers */}
         <Services />
@@ -52,4 +59,3 @@ export default function App() {
     </div>
   );
 }
-
