@@ -1,0 +1,6 @@
+{
+  "name": "AM Engenharia",
+  "description": "Portfólio profissional de engenharia civil, serviços técnicos especializados, calculadora interativa de orçamentos e galeria de obras organizada por categorias.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

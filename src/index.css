@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Hanken Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --color-brand-cyan: #00b4b8;
+  --color-brand-teal: #0a5c66;
+  --color-brand-dark: #0a222d;
+}
+
+/* Custom scrollbar thin for technical dashboard layout */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #121414;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #343535;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #00b4b8;
+}
+
+/* Hide scrollbar default utility for horizontal scroll ribbon */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Standard smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
