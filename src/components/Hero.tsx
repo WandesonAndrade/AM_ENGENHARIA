@@ -3,12 +3,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { HERO_BG_IMAGE } from '../data';
-import { ArrowRight, HardHat, ShieldCheck, FileCheck, Award } from 'lucide-react';
+import { HERO_BG_IMAGE } from "../data";
+import {
+  ArrowRight,
+  HardHat,
+  ShieldCheck,
+  FileCheck,
+  Award,
+} from "lucide-react";
 
 export default function Hero() {
   const handleScrollToEstimate = () => {
-    const element = document.getElementById('orcamento');
+    const element = document.getElementById("orcamento");
     if (element) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -18,13 +24,13 @@ export default function Hero() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   const handleScrollToPortfolio = () => {
-    const element = document.getElementById('portfolio');
+    const element = document.getElementById("portfolio");
     if (element) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -34,7 +40,7 @@ export default function Hero() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -72,19 +78,23 @@ export default function Hero() {
             <span className="text-brand-cyan relative inline-block">
               EM ESTRUTURAS
               <span className="absolute bottom-1.5 left-0 w-full h-2 bg-brand-cyan/15 -z-10" />
-            </span> <br />
+            </span>{" "}
+            <br />
             DE EXCELÊNCIA.
           </h1>
 
           <p className="font-sans text-base md:text-lg text-[#e3e2e2] max-w-xl leading-relaxed font-light">
-            Previsibilidade técnica, segurança milimétrica e governança integrada para o seu projeto de alto padrão. Alinhamento perfeito com a marca e compromisso inflexível com a integridade física de sua obra.
+            Previsibilidade técnica, segurança milimétrica e governança
+            integrada para o seu projeto de alto padrão. Alinhamento perfeito
+            com a marca e compromisso inflexível com a integridade física de sua
+            obra.
           </p>
 
           {/* Call to Actions */}
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
             <button
               onClick={handleScrollToEstimate}
-              className="bg-brand-cyan hover:bg-[#00d0d5] text-black font-mono text-xs font-bold uppercase tracking-wider px-8 py-5 transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-3 shadow-lg shadow-brand-cyan/15 cursor-pointer"
+              className="bg-brand-cyan hover:bg-[#59b2b8] text-black font-mono text-xs font-bold uppercase tracking-wider px-8 py-5 transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-3 shadow-lg shadow-brand-cyan/15 cursor-pointer"
             >
               <span>SOLICITAR ORÇAMENTO BLINDADO</span>
               <ArrowRight className="w-4 h-4 text-black stroke-[3]" />
@@ -92,7 +102,7 @@ export default function Hero() {
 
             <button
               onClick={handleScrollToPortfolio}
-              className="border border-[#0a5c66]/60 bg-white/5 hover:bg-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider px-8 py-5 transition-all duration-200 backdrop-blur-xs flex items-center justify-center space-x-2 cursor-pointer"
+              className="border border-brand-teal/60 bg-white/5 hover:bg-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider px-8 py-5 transition-all duration-200 backdrop-blur-xs flex items-center justify-center space-x-2 cursor-pointer"
             >
               <span>VER PORTFÓLIO DE OBRAS</span>
             </button>
@@ -106,22 +116,32 @@ export default function Hero() {
             <div className="flex items-start space-x-2.5">
               <ShieldCheck className="w-5 h-5 text-brand-cyan shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-sans font-bold text-xs">Garantia Técnica</h4>
-                <p className="font-sans text-[10px] text-gray-400">ART assinada em 100% dos serviços</p>
+                <h4 className="font-sans font-bold text-xs">
+                  Garantia Técnica
+                </h4>
+                <p className="font-sans text-[10px] text-gray-400">
+                  ART assinada em 100% dos serviços
+                </p>
               </div>
             </div>
             <div className="flex items-start space-x-2.5">
               <FileCheck className="w-5 h-5 text-brand-cyan shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-sans font-bold text-xs">Custo Controlado</h4>
-                <p className="font-sans text-[10px] text-gray-400">Previsibilidade contratual estrita</p>
+                <h4 className="font-sans font-bold text-xs">
+                  Custo Controlado
+                </h4>
+                <p className="font-sans text-[10px] text-gray-400">
+                  Previsibilidade contratual estrita
+                </p>
               </div>
             </div>
             <div className="flex items-start space-x-2.5">
               <Award className="w-5 h-5 text-brand-cyan shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-sans font-bold text-xs">Modelagem BIM</h4>
-                <p className="font-sans text-[10px] text-gray-400 font-light">Zero desperdício com projetos 3D</p>
+                <p className="font-sans text-[10px] text-gray-400 font-light">
+                  Zero desperdício com projetos 3D
+                </p>
               </div>
             </div>
           </div>
@@ -153,10 +173,13 @@ export default function Hero() {
                   <span className="font-sans text-5xl font-black text-white tracking-tight">
                     +40
                   </span>
-                  <span className="font-sans text-xl font-bold text-brand-cyan">OBRAS</span>
+                  <span className="font-sans text-xl font-bold text-brand-cyan">
+                    OBRAS
+                  </span>
                 </div>
                 <p className="font-sans text-xs text-gray-400 mt-1">
-                  Residenciais, corporativas e industriais concluídas sob nossa rígida tutela técnica.
+                  Residenciais, corporativas e industriais concluídas sob nossa
+                  rígida tutela técnica.
                 </p>
               </div>
 
@@ -169,10 +192,13 @@ export default function Hero() {
                   <span className="font-sans text-5xl font-black text-white tracking-tight">
                     15k
                   </span>
-                  <span className="font-sans text-lg font-bold text-brand-cyan">M² CONSTRUÍDOS</span>
+                  <span className="font-sans text-lg font-bold text-brand-cyan">
+                    M² CONSTRUÍDOS
+                  </span>
                 </div>
                 <p className="font-sans text-xs text-gray-400 mt-1">
-                  De cálculo, acompanhamento de fundações e superestruturas executadas com primor físico.
+                  De cálculo, acompanhamento de fundações e superestruturas
+                  executadas com primor físico.
                 </p>
               </div>
 
@@ -190,7 +216,8 @@ export default function Hero() {
                   </span>
                 </div>
                 <p className="font-sans text-xs text-gray-400 mt-1">
-                  Compromisso sagrado: cronograma de materiais e operários fiscalizado em tempo real.
+                  Compromisso sagrado: cronograma de materiais e operários
+                  fiscalizado em tempo real.
                 </p>
               </div>
             </div>

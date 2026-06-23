@@ -10,9 +10,10 @@ export type ProjectCategory =
   | "corporativo"
   | "reformas"
   | "instalacoes"
-  | "infraestrutura"
-  | "industrial"
-  | "outros";
+  | "tecnologia"
+  | "eletrica"
+  | "hidrossanitario"
+  | "seguranca";
 
 export interface Project {
   id: string;

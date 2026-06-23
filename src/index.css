@@ -1,13 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Hanken Grotesk", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
-  --color-brand-cyan: #00b4b8;
-  --color-brand-teal: #0a5c66;
-  --color-brand-dark: #0a222d;
+  --color-brand-cyan: #40a5aa;
+  --color-brand-teal: #1b5259;
+  --color-brand-dark: #111f26;
+
+  --animate-fade-in: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-scan-line: scan-line 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  --animate-shine: shine 1.6s ease-in-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes scan-line {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(280%);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 200%;
+    }
+  }
 }
 
 /* Custom scrollbar thin for technical dashboard layout */
@@ -22,7 +56,7 @@
   background: #343535;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: #00b4b8;
+  background: var(--color-brand-cyan);
 }
 
 /* Hide scrollbar default utility for horizontal scroll ribbon */
@@ -30,12 +64,11 @@
   display: none;
 }
 .scrollbar-none {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Standard smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
-

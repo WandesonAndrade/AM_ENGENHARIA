@@ -3,10 +3,21 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, ComponentType } from 'react';
-import { SERVICES } from '../data';
-import { Service } from '../types';
-import { Zap, Droplet, Flame, Network, CloudLightning, Wind, ArrowRight, X, Sparkles, CheckCircle2 } from 'lucide-react';
+import { useState, ComponentType } from "react";
+import { SERVICES } from "../data";
+import { Service } from "../types";
+import {
+  Zap,
+  Droplet,
+  Flame,
+  Network,
+  CloudLightning,
+  Wind,
+  ArrowRight,
+  X,
+  Sparkles,
+  CheckCircle2,
+} from "lucide-react";
 
 const IconMap: { [key: string]: ComponentType<{ className?: string }> } = {
   Zap: Zap,
@@ -23,7 +34,7 @@ export default function Services() {
   const handleConsultService = (serviceId: string) => {
     setActiveService(null);
     // Scroll to estimator and preset values if needed
-    const element = document.getElementById('orcamento');
+    const element = document.getElementById("orcamento");
     if (element) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -33,29 +44,38 @@ export default function Services() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
 
       // Find input or trigger state change in estimator
       setTimeout(() => {
-        const selectElem = document.getElementById('type-selector') as HTMLSelectElement;
+        const selectElem = document.getElementById(
+          "type-selector",
+        ) as HTMLSelectElement;
         if (selectElem) {
-          if (serviceId === 'ppci' || serviceId === 'gas') {
-            selectElem.value = 'reformas';
-          } else if (serviceId === 'eletrica' || serviceId === 'spda' || serviceId === 'cftv_cabeamento') {
-            selectElem.value = 'comercial';
-          } else if (serviceId === 'hidrossanitario') {
-            selectElem.value = 'residencial';
+          if (serviceId === "ppci" || serviceId === "gas") {
+            selectElem.value = "reformas";
+          } else if (
+            serviceId === "eletrica" ||
+            serviceId === "spda" ||
+            serviceId === "cftv_cabeamento"
+          ) {
+            selectElem.value = "comercial";
+          } else if (serviceId === "hidrossanitario") {
+            selectElem.value = "residencial";
           }
           // Dispatch change event to update state
-          selectElem.dispatchEvent(new Event('change', { bubbles: true }));
+          selectElem.dispatchEvent(new Event("change", { bubbles: true }));
         }
       }, 400);
     }
   };
 
   return (
-    <section id="servicos" className="py-24 bg-[#121414] relative overflow-hidden">
+    <section
+      id="servicos"
+      className="py-24 bg-[#121414] relative overflow-hidden"
+    >
       {/* Decorative Blueprint Grid Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
@@ -69,10 +89,13 @@ export default function Services() {
               </span>
             </div>
             <h2 className="font-sans text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-none">
-              NOSSOS <span className="text-brand-cyan">PRINCIPAIS SERVIÇOS</span>
+              NOSSOS{" "}
+              <span className="text-brand-cyan">PRINCIPAIS SERVIÇOS</span>
             </h2>
             <p className="font-sans text-gray-400 text-sm font-light">
-              Engenharia civil de ponta concebida com metodologias ágeis e projetos integrados em BIM para afastar riscos orçamentários estruturais e burocráticos.
+              Engenharia civil de ponta concebida com metodologias ágeis e
+              projetos integrados em BIM para afastar riscos orçamentários
+              estruturais e burocráticos.
             </p>
           </div>
           <div className="hidden md:block">
@@ -93,8 +116,8 @@ export default function Services() {
                 className="group relative bg-[#1b1c1c]/45 hover:bg-[#1b1c1c]/90 border border-[#343535] hover:border-brand-cyan/40 p-8 transition-all duration-300 flex flex-col justify-between h-80 cursor-pointer shadow-xl relative overflow-hidden"
               >
                 {/* Structural Bar decoration */}
-                <div className="absolute top-0 left-0 w-full h-[3px] bg-linear-to-r from-transparent via-transparent to-transparent group-hover:from-brand-cyan group-hover:via-[#00d0d5] group-hover:to-transparent transition-all duration-500" />
-                
+                <div className="absolute top-0 left-0 w-full h-[3px] bg-linear-to-r from-transparent via-transparent to-transparent group-hover:from-brand-cyan group-hover:via-[#59b2b8] group-hover:to-transparent transition-all duration-500" />
+
                 {/* Background glow behind card on hover */}
                 <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-brand-cyan/0 group-hover:bg-brand-cyan/2 blur-xl rounded-full transition-all duration-500" />
 
@@ -174,7 +197,10 @@ export default function Services() {
               </h4>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {activeService.benefits.map((b, i) => (
-                  <li key={i} className="flex items-start space-x-2 text-xs text-gray-400">
+                  <li
+                    key={i}
+                    className="flex items-start space-x-2 text-xs text-gray-400"
+                  >
                     <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5 animate-pulse" />
                     <span className="leading-relaxed font-light">{b}</span>
                   </li>
@@ -186,7 +212,7 @@ export default function Services() {
             <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 pt-4 border-t border-[#343535]">
               <button
                 onClick={() => handleConsultService(activeService.id)}
-                className="flex-1 bg-brand-cyan hover:bg-[#00d0d5] text-black font-mono text-xs font-bold uppercase tracking-wider py-4 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer rounded-none"
+                className="flex-1 bg-brand-cyan hover:bg-[#59b2b8] text-black font-mono text-xs font-bold uppercase tracking-wider py-4 transition-all text-center flex items-center justify-center space-x-2 cursor-pointer rounded-none"
               >
                 <span>SIMULAR ORÇAMENTO DESTE SETOR</span>
                 <ArrowRight className="w-4 h-4 text-black" />

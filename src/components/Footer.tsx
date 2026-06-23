@@ -3,24 +3,24 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, FormEvent } from 'react';
-import { HardHat, Phone, Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { useState, FormEvent } from "react";
+import { HardHat, Phone, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   const handleSubscribe = (e: FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    
+
     // Simulate real database signup storage
     try {
-      localStorage.setItem('am_engineering_newsletter', email.trim());
+      localStorage.setItem("am_engineering_newsletter", email.trim());
       setIsSubscribed(true);
-      setEmail('');
+      setEmail("");
     } catch (err) {
-      console.warn('Unable to subscribe newsletter locally:', err);
+      console.warn("Unable to subscribe newsletter locally:", err);
     }
   };
 
@@ -35,7 +35,7 @@ export default function Footer() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -44,13 +44,12 @@ export default function Footer() {
     <footer className="bg-[#0a0a0a] border-t border-[#1f2020] pt-16 pb-8 text-gray-400 relative overflow-hidden">
       {/* Visual background details */}
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-cyan/2 blur-3xl rounded-full" />
-      
+
       <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-        
         {/* Column 1: Brand briefs - Columns 1 to 4 */}
         <div className="md:col-span-4 flex flex-col space-y-4">
           <div className="flex items-center space-x-3 text-left">
-            <div className="w-9 h-9 bg-linear-to-br from-[#00b4b8] to-[#005a5d] flex items-center justify-center relative">
+            <div className="w-9 h-9 bg-linear-to-br from-[#40a5aa] to-[#1b5259] flex items-center justify-center relative">
               <HardHat className="w-4 h-4 text-black stroke-[2.5]" />
             </div>
             <div>
@@ -64,7 +63,10 @@ export default function Footer() {
           </div>
 
           <p className="font-sans text-xs text-gray-500 leading-relaxed max-w-sm font-light">
-            Fundada pelo Eng. Adrian M. Silveira, somos uma empresa dedicada a entregar segurança, previsibilidade fiscal e integridade física em projetos residenciais de alto padrão e corporativos no estado de São Paulo.
+            Fundada pelo Eng. Adrian M. Silveira, somos uma empresa dedicada a
+            entregar segurança, previsibilidade fiscal e integridade física em
+            projetos residenciais de alto padrão e corporativos no estado de São
+            Paulo.
           </p>
 
           <div className="space-y-2 pt-2 text-xs font-sans">
@@ -78,7 +80,9 @@ export default function Footer() {
             </div>
             <div className="flex items-center space-x-2 text-gray-400">
               <MapPin className="w-3.5 h-3.5 text-brand-cyan shrink-0" />
-              <span className="truncate font-light">Av. Paulista, nº 2000 - Jardins, São Paulo - SP</span>
+              <span className="truncate font-light">
+                Av. Paulista, nº 2000 - Jardins, São Paulo - SP
+              </span>
             </div>
           </div>
         </div>
@@ -91,7 +95,7 @@ export default function Footer() {
           <ul className="flex flex-col space-y-2 font-sans text-xs">
             <li>
               <button
-                onClick={() => scrollToSection('sobre')}
+                onClick={() => scrollToSection("sobre")}
                 className="hover:text-white hover:underline transition-all cursor-pointer"
               >
                 Quem Somos
@@ -99,7 +103,7 @@ export default function Footer() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('servicos')}
+                onClick={() => scrollToSection("servicos")}
                 className="hover:text-white hover:underline transition-all cursor-pointer"
               >
                 O Que Fazemos
@@ -107,7 +111,7 @@ export default function Footer() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('processo')}
+                onClick={() => scrollToSection("processo")}
                 className="hover:text-white hover:underline transition-all cursor-pointer"
               >
                 Nosso Metodologia em 4 Passos
@@ -115,7 +119,7 @@ export default function Footer() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('portfolio')}
+                onClick={() => scrollToSection("portfolio")}
                 className="hover:text-white hover:underline transition-all cursor-pointer"
               >
                 Portfólio de Obras
@@ -123,7 +127,7 @@ export default function Footer() {
             </li>
             <li>
               <button
-                onClick={() => scrollToSection('depoimentos')}
+                onClick={() => scrollToSection("depoimentos")}
                 className="hover:text-white hover:underline transition-all cursor-pointer"
               >
                 Depoimentos de Parceiros
@@ -138,13 +142,17 @@ export default function Footer() {
             MANTENHA-SE INFORMADO
           </h4>
           <p className="font-sans text-xs text-gray-500 leading-relaxed">
-            Assine nosso sumário técnico bimestral com índices regionais CUB/SINAPI, patologias prediais comuns e insights de cálculo estrutural.
+            Assine nosso sumário técnico bimestral com índices regionais
+            CUB/SINAPI, patologias prediais comuns e insights de cálculo
+            estrutural.
           </p>
 
           {isSubscribed ? (
             <div className="bg-[#121414] border border-green-500/20 p-4 flex items-center space-x-3 text-green-400 text-xs">
               <CheckCircle2 className="w-5 h-5 shrink-0" />
-              <span>Inscrição confirmada! Você receberá nosso informativo técnico.</span>
+              <span>
+                Inscrição confirmada! Você receberá nosso informativo técnico.
+              </span>
             </div>
           ) : (
             <form onSubmit={handleSubscribe} className="flex space-x-2">
@@ -158,24 +166,32 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="bg-brand-cyan hover:bg-[#00d0d5] text-black font-mono text-xs font-bold uppercase tracking-wider px-5 transition-colors cursor-pointer flex items-center justify-center shrink-0 rounded-none"
+                className="bg-brand-cyan hover:bg-[#59b2b8] text-black font-mono text-xs font-bold uppercase tracking-wider px-5 transition-colors cursor-pointer flex items-center justify-center shrink-0 rounded-none"
               >
                 <Send className="w-4 h-4 text-black" />
               </button>
             </form>
           )}
         </div>
-
       </div>
 
       <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-[#1f2020] text-center md:text-left flex flex-col md:flex-row md:justify-between items-center space-y-4 md:space-y-0 text-[10px] font-sans text-gray-600">
         <div>
-          <span>© {new Date().getFullYear()} AM Engenharia de Precisão e Gestão Turnkey. Todos os direitos reservados.</span>
+          <span>
+            © {new Date().getFullYear()} AM Engenharia de Precisão e Gestão
+            Turnkey. Todos os direitos reservados.
+          </span>
         </div>
         <div className="flex space-x-6 font-mono text-[9px] uppercase">
-          <a href="#sobre" className="hover:text-gray-400">Política de Privacidade</a>
-          <a href="#sobre" className="hover:text-gray-400">Termos de Serviço</a>
-          <a href="#sobre" className="hover:text-gray-400">Registo CREA-SP</a>
+          <a href="#sobre" className="hover:text-gray-400">
+            Política de Privacidade
+          </a>
+          <a href="#sobre" className="hover:text-gray-400">
+            Termos de Serviço
+          </a>
+          <a href="#sobre" className="hover:text-gray-400">
+            Registo CREA-SP
+          </a>
         </div>
       </div>
     </footer>

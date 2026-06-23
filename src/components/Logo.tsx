@@ -4,7 +4,7 @@
  */
 
 import { SVGProps } from "react";
-("");
+
 /**
  * High-fidelity SVG of the AM Engenharia logo mark.
  * Recreates the intertwined geometric 'A' and 'M' in dynamic, layered teal gradients.
@@ -24,24 +24,24 @@ export function LogoIcon({
       <defs>
         {/* Luminous Teal/Cyan Gradient for the Highlighted 'A' ribbon */}
         <linearGradient id="logoTealLight" x1="10%" y1="0%" x2="90%" y2="80%">
-          <stop offset="0%" stopColor="#00E3E6" />
-          <stop offset="100%" stopColor="#008B94" />
+          <stop offset="0%" stopColor="#59b2b8" />
+          <stop offset="100%" stopColor="#2e7b82" />
         </linearGradient>
 
         {/* Deep Ocean / Shadow Blue for the 'M' structure */}
         <linearGradient id="logoTealDark" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0A7C8C" />
-          <stop offset="50%" stopColor="#0D4C5C" />
-          <stop offset="100%" stopColor="#062633" />
+          <stop offset="0%" stopColor="#216a75" />
+          <stop offset="50%" stopColor="#1c4952" />
+          <stop offset="100%" stopColor="#0c1d24" />
         </linearGradient>
 
         {/* Foundation Base Ground Solid Teal-Grey */}
         <linearGradient id="logoBaseGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-          <stop offset="0%" stopColor="#052E3B" />
-          <stop offset="100%" stopColor="#091E26" />
+          <stop offset="0%" stopColor="#0a2a33" />
+          <stop offset="100%" stopColor="#081b22" />
         </linearGradient>
 
-        <filter id="subtleShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <shadow id="subtleShadow">
           <feDropShadow
             dx="0"
             dy="4"
@@ -49,7 +49,7 @@ export function LogoIcon({
             floodColor="#000000"
             floodOpacity="0.35"
           />
-        </filter>
+        </shadow>
       </defs>
 
       <g filter="url(#subtleShadow)">
@@ -109,9 +109,9 @@ export function LogoFull({
       <LogoIcon className="w-11 h-11 shrink-0" />
       <div className="flex flex-col justify-center leading-none">
         <h1
-          className={`font-sans tracking-tight font-black uppercase text-lg ${light ? "text-white" : "text-[#0a222d]"}`}
+          className={`font-sans tracking-tight font-black uppercase text-lg ${light ? "text-white" : "text-brand-dark"}`}
         >
-          AM <span className="text-[#00b4b8]">ENGENHARIA</span>
+          AM <span className="text-brand-cyan">ENGENHARIA</span>
         </h1>
         <p
           className={`font-mono uppercase tracking-[0.25em] text-[8px] mt-0.5 leading-none ${light ? "text-[#b7d2db]" : "text-gray-500"}`}

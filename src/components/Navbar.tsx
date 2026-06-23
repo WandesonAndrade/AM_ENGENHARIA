@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
-import { LogoFull } from './Logo';
+import { useState, useEffect } from "react";
+import { Menu, X, Phone } from "lucide-react";
+import { LogoFull } from "./Logo";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,8 +19,8 @@ export default function Navbar() {
         setIsScrolled(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -35,31 +35,31 @@ export default function Navbar() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   const menuItems = [
-    { label: 'Quem Somos', id: 'sobre' },
-    { label: 'O Que Fazemos', id: 'servicos' },
-    { label: 'Nosso Processo', id: 'processo' },
-    { label: 'Portfólio', id: 'portfolio' },
-    { label: 'Depoimentos', id: 'depoimentos' },
+    { label: "Quem Somos", id: "sobre" },
+    { label: "O Que Fazemos", id: "servicos" },
+    { label: "Nosso Processo", id: "processo" },
+    { label: "Portfólio", id: "portfolio" },
+    { label: "Depoimentos", id: "depoimentos" },
   ];
 
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
         isScrolled
-          ? 'bg-[#121414]/90 backdrop-blur-md border-[#343535] py-4'
-          : 'bg-[#121414]/30 backdrop-blur-xs border-transparent py-6'
+          ? "bg-[#121414]/90 backdrop-blur-md border-[#343535] py-4"
+          : "bg-[#121414]/30 backdrop-blur-xs border-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="flex items-center space-x-3 text-left focus:outline-none group cursor-pointer"
         >
           <LogoFull />
@@ -82,8 +82,8 @@ export default function Navbar() {
 
           {/* Budget Quick Action */}
           <button
-            onClick={() => scrollToSection('orcamento')}
-            className="font-mono text-xs font-semibold uppercase tracking-wider bg-brand-cyan hover:bg-[#00d0d5] text-black px-5 py-3 transition-all duration-300 transform active:scale-95 shadow-lg shadow-brand-cyan/20 hover:shadow-brand-cyan/35 flex items-center space-x-2 border border-transparent cursor-pointer font-bold"
+            onClick={() => scrollToSection("orcamento")}
+            className="font-mono text-xs font-semibold uppercase tracking-wider bg-brand-cyan hover:bg-[#59b2b8] text-black px-5 py-3 transition-all duration-300 transform active:scale-95 shadow-lg shadow-brand-cyan/20 hover:shadow-brand-cyan/35 flex items-center space-x-2 border border-transparent cursor-pointer font-bold"
           >
             <Phone className="w-3.5 h-3.5 mr-1" />
             <span>FALE CONOSCO</span>
@@ -97,7 +97,11 @@ export default function Navbar() {
             className="text-white hover:text-brand-cyan transition-colors p-2 focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
@@ -105,9 +109,9 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       <div
         className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-xs bg-[#121414] border-l border-[#343535] z-40 transform transition-transform duration-300 ease-in-out p-6 shadow-2xl ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ top: '72px', height: 'calc(100vh - 72px)' }}
+        style={{ top: "72px", height: "calc(100vh - 72px)" }}
       >
         <div className="flex flex-col space-y-6 h-full justify-between pb-8">
           <div className="flex flex-col space-y-4">
@@ -130,7 +134,7 @@ export default function Navbar() {
               AM Engenharia Civil & Estrutural
             </p>
             <button
-              onClick={() => scrollToSection('orcamento')}
+              onClick={() => scrollToSection("orcamento")}
               className="w-full text-center font-mono text-sm font-bold uppercase bg-brand-cyan text-black py-4 select-none tracking-widest transition-colors hover:bg-brand-cyan/80 flex items-center justify-center space-x-2"
             >
               <Phone className="w-4 h-4 mr-2" />
