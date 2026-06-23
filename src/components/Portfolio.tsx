@@ -34,11 +34,18 @@ export default function Portfolio() {
 
   const categories: { key: ProjectCategory; label: string }[] = [
     { key: "todos", label: "Todos os Projetos" },
-    { key: "residencial", label: "Residencial Alto Padrão" },
-    { key: "comercial", label: "Comercial & Clínicas" },
-    { key: "corporativo", label: "Retrofit & Escritórios" },
-    { key: "reformas", label: "Reformas & Restauros" },
+    { key: "residencial", label: "As-Built & Arquitetura" },
+    { key: "eletrica", label: "Elétrica / SPDA" },
+    { key: "hidrossanitario", label: "Hidrossanitário" },
+    { key: "instalacoes", label: "Gás / Instalações" },
+    { key: "seguranca", label: "Combate a Incêndio" },
+    { key: "tecnologia", label: "Cabeamento & CFTV" },
   ];
+
+  const getProjectCount = (categoryKey: ProjectCategory) => {
+    if (categoryKey === "todos") return PROJECTS.length;
+    return PROJECTS.filter((p) => p.category === categoryKey).length;
+  };
 
   // Keyboard navigation for fullscreen lightbox
   useEffect(() => {
@@ -140,28 +147,55 @@ export default function Portfolio() {
               card para ver dados do projeto.
             </p>
           </div>
-          <div className="flex items-center space-x-2 bg-[#1b1c1c] border border-[#343535] px-4 py-2 text-xs font-mono text-gray-400">
-            <Filter className="w-3.5 h-3.5 text-brand-cyan" />
-            <span>CATEGORIAS DISPONÍVEIS: {categories.length - 1}</span>
+          <div className="flex items-center space-x-2 bg-[#1b1c1c]/80 border border-[#343535] px-4 py-2 text-xs font-mono text-gray-400">
+            <Filter className="w-3.5 h-3.5 text-brand-cyan animate-pulse" />
+            <span>
+              ESPECIFICAÇÕES TÉCNICAS: {categories.length - 1} SETORES
+            </span>
           </div>
         </div>
 
         {/* Filter Navigation - Mobile Scrollable & Desktop Grid */}
         <div className="mb-12">
-          <div className="flex overflow-x-auto gap-2 pb-3 scrollbar-none scroll-smooth -mx-6 px-6 md:pb-0 md:mx-0 md:px-0 md:flex-nowrap lg:flex-wrap items-center">
-            {categories.map((cat) => (
-              <button
-                key={cat.key}
-                onClick={() => setActiveCategory(cat.key)}
-                className={`font-mono text-xs uppercase tracking-wider px-5 py-3.5 shrink-0 transition-all duration-300 border focus:outline-none cursor-pointer ${
-                  activeCategory === cat.key
-                    ? "bg-brand-cyan text-black border-transparent font-bold"
-                    : "bg-[#1b1c1c]/60 text-gray-400 border-[#343535] hover:text-white hover:bg-[#1b1c1c]"
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          <div className="flex overflow-x-auto gap-2.5 pb-4 scrollbar-none scroll-smooth -mx-6 px-6 md:pb-0 md:mx-0 md:px-0 md:flex-wrap items-center">
+            {categories.map((cat) => {
+              const isSelected = activeCategory === cat.key;
+              const count = getProjectCount(cat.key);
+
+              return (
+                <button
+                  key={cat.key}
+                  onClick={() => setActiveCategory(cat.key)}
+                  className={`font-mono text-[11px] uppercase tracking-wider px-4.5 py-3.5 shrink-0 transition-all duration-300 border focus:outline-none cursor-pointer flex items-center space-x-2.5 group/btn relative ${
+                    isSelected
+                      ? "bg-brand-cyan text-black border-transparent font-bold shadow-[0_0_15px_rgba(64,165,170,0.15)]"
+                      : "bg-[#1b1c1c]/45 text-gray-400 border-[#343535] hover:text-white hover:bg-[#1b1c1c] hover:border-brand-cyan/40"
+                  }`}
+                >
+                  {/* Decorative internal bar */}
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full transition-all shrink-0 duration-300 ${
+                      isSelected
+                        ? "bg-black"
+                        : "bg-transparent group-hover/btn:bg-brand-cyan/70"
+                    }`}
+                  />
+
+                  <span>{cat.label}</span>
+
+                  {/* Premium HUD count tag */}
+                  <span
+                    className={`font-mono text-[9px] px-1.5 py-0.5 border transition-all duration-300 shrink-0 ${
+                      isSelected
+                        ? "bg-black/10 border-black/20 text-black font-semibold"
+                        : "bg-black/40 border-[#242525] text-brand-cyan/70 group-hover/btn:text-brand-cyan"
+                    }`}
+                  >
+                    {String(count).padStart(2, "0")}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
