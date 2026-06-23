@@ -1,6 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
+:root {
+  /* Default: Dark Theme */
+  --bg-main: #121414;
+  --bg-card: #1b1c1c;
+  --bg-card-alt: #161717;
+  --bg-deep: #0d0e0e;
+  --bg-console: #151717;
+  --border-main: #343535;
+  --border-muted: #242525;
+  --border-hover: #40a5aa;
+  --text-main: #ffffff;
+  --text-muted: #9ca3af; /* gray-400 */
+  --text-highlight: #b7d2db;
+  --text-invert: #0d0e0e;
+}
+
+:root.light {
+  /* Overrides: Light Theme */
+  --bg-main: #f8fafc; /* slate-50 */
+  --bg-card: #ffffff; /* white */
+  --bg-card-alt: #f1f5f9; /* slate-100 */
+  --bg-deep: #f1f5f9; /* slate-100 */
+  --bg-console: #ffffff;
+  --border-main: #cbd5e1; /* slate-300 */
+  --border-muted: #e2e8f0; /* slate-200 */
+  --border-hover: #1b5259;
+  --text-main: #0f172a; /* slate-900 */
+  --text-muted: #475569; /* slate-600 */
+  --text-highlight: #0891b2; /* cyan-600 */
+  --text-invert: #ffffff;
+}
+
 @theme {
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Hanken Grotesk", sans-serif;
@@ -8,6 +40,18 @@
   --color-brand-cyan: #40a5aa;
   --color-brand-teal: #1b5259;
   --color-brand-dark: #111f26;
+
+  --color-bg-main: var(--bg-main);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-alt: var(--bg-card-alt);
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-console: var(--bg-console);
+  --color-border-main: var(--border-main);
+  --color-border-muted: var(--border-muted);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-text-highlight: var(--text-highlight);
+  --color-text-invert: var(--text-invert);
 
   --animate-fade-in: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-spin-slow: spin 20s linear infinite;
@@ -71,4 +115,343 @@
 /* Standard smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+/* Base Light Mode Overrides */
+.light {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+}
+
+.light .bg-\[\#121414\] {
+  background-color: var(--bg-main) !important;
+}
+.light .bg-\[\#0d0e0e\] {
+  background-color: var(--bg-deep) !important;
+}
+.light .bg-\[\#1b1c1c\] {
+  background-color: var(--bg-card) !important;
+}
+
+/* Translucent Background Overrides */
+.light .bg-\[\#1b1c1c\]\/30 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+.light .bg-\[\#1b1c1c\]\/35,
+.light .bg-\[\#1b1c1c\]\/45 {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: var(--border-main) !important;
+}
+.light .bg-\[\#1b1c1c\]\/60 {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+}
+.light .bg-\[\#1b1c1c\]\/70,
+.light .hover\:bg-\[\#1b1c1c\]\/70:hover {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+.light .bg-\[\#1b1c1c\]\/80,
+.light .bg-\[\#1b1c1c\]\/90 {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-color: var(--border-main) !important;
+}
+.light .bg-\[\#121414\]\/90 {
+  background-color: rgba(248, 250, 252, 0.92) !important;
+  border-color: var(--border-main) !important;
+}
+.light .bg-\[\#121414\]\/30 {
+  background-color: rgba(248, 250, 252, 0.4) !important;
+}
+.light .bg-\[\#121414\]\/40 {
+  background-color: rgba(248, 250, 252, 0.55) !important;
+}
+.light .bg-black\/25,
+.light .bg-black\/30,
+.light .bg-black\/45 {
+  background-color: var(--bg-card-alt) !important;
+}
+
+/* Gradients and Section Overrides */
+/* 1. Hero Image Opacity and Gradients Overrides (CSS Selector 3) */
+.light section:nth-of-type(1) > div:nth-of-type(1) img {
+  opacity: 0.12 !important;
+  filter: grayscale(100%) contrast(110%) brightness(105%) !important;
+  mix-blend-mode: multiply !important;
+}
+.light .bg-gradient-to-t.from-\[\#121414\] {
+  background-image: linear-gradient(
+    to top,
+    #f8fafc 0%,
+    rgba(248, 250, 252, 0.85) 50%,
+    rgba(248, 250, 252, 0.3) 100%
+  ) !important;
+}
+.light .bg-gradient-to-r.from-\[\#121414\] {
+  background-image: linear-gradient(
+    to right,
+    #f8fafc 0%,
+    rgba(248, 250, 252, 0.9) 50%,
+    transparent 100%
+  ) !important;
+}
+
+/* 2. Process callout warning (CSS Selector 7) */
+.light .bg-linear-to-r.from-\[\#1b1c1c\]\/60 {
+  background-image: linear-gradient(
+    to right,
+    rgba(226, 232, 240, 0.95) 0%,
+    rgba(241, 245, 249, 0.3) 100%
+  ) !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* 3. Hero Floating Technical Board Overrides (CSS Selector 2) */
+.light section:nth-of-type(1) .lg\:col-span-5 > div:nth-of-type(1) {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-color: #cbd5e1 !important; /* slate-300 */
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08) !important;
+}
+.light
+  section:nth-of-type(1)
+  .lg\:col-span-5
+  > div:nth-of-type(1)
+  .border-brand-cyan {
+  border-color: #1b5259 !important; /* brand-teal for premium contrast */
+}
+.light section:nth-of-type(1) .lg\:col-span-5 > div:nth-of-type(1) .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+.light
+  section:nth-of-type(1)
+  .lg\:col-span-5
+  > div:nth-of-type(1)
+  .text-gray-400 {
+  color: #475569 !important; /* slate-600 */
+}
+.light
+  section:nth-of-type(1)
+  .lg\:col-span-5
+  > div:nth-of-type(1)
+  .text-brand-cyan {
+  color: #1b5259 !important; /* brand-teal */
+}
+.light
+  section:nth-of-type(1)
+  .lg\:col-span-5
+  > div:nth-of-type(1)
+  .bg-\[\#343535\] {
+  background-color: #e2e8f0 !important; /* slate-200 */
+}
+.light
+  section:nth-of-type(1)
+  .lg\:col-span-5
+  > div:nth-of-type(1)
+  .text-\[\#dbc2b0\] {
+  color: #111f26 !important; /* dark slate */
+}
+
+/* 4. Portfolio Filter HUD count badges in Light Mode (CSS Selector 1) */
+.light #portfolio button span:nth-of-type(3) {
+  background-color: rgba(27, 82, 89, 0.08) !important;
+  color: #1b5259 !important;
+  border-color: rgba(27, 82, 89, 0.18) !important;
+}
+.light #portfolio button.bg-brand-cyan span:nth-of-type(3) {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: #0d0e0e !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 5. Floating WhatsApp Tooltip Bubble (CSS Selector 2) */
+.light .fixed.bottom-6.right-6 .bg-\[\#1b1c1c\] {
+  background-color: #ffffff !important;
+  border-color: rgba(37, 211, 102, 0.45) !important;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.15) !important;
+}
+.light .fixed.bottom-6.right-6 .bg-\[\#1b1c1c\] * {
+  color: #0f172a !important;
+}
+.light .fixed.bottom-6.right-6 .bg-\[\#1b1c1c\] .text-brand-cyan {
+  color: #1b5259 !important; /* Premium high contrast brand teal */
+}
+
+/* Safeguard green WhatsApp branding button from getting dark text overrides */
+.light .bg-\[\#25D366\],
+.light .bg-\[\#25D366\] *,
+.light .hover\:bg-\[\#20ba59\]:hover,
+.light .hover\:bg-\[\#20ba59\]:hover * {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* 4. Software Badges (CSS Selectors 3, 4, 5, 6) */
+.light #software-badges span {
+  background-color: #e2e8f0 !important; /* slate-200 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* Border classes overrides */
+.light .border-\[\#343535\] {
+  border-color: var(--border-main) !important;
+}
+.light .border-\[\#2b2c2c\] {
+  border-color: var(--border-muted) !important;
+}
+.light .border-\[\#242525\] {
+  border-color: var(--border-muted) !important;
+}
+.light .border-\[\#1f2020\] {
+  border-color: var(--border-muted) !important;
+}
+.light .border-white\/5,
+.light .border-white\/10 {
+  border-color: var(--border-main) !important;
+}
+
+/* Text overrides - be careful to protect buttons */
+.light .text-white {
+  color: var(--text-main) !important;
+}
+.light .text-gray-300 {
+  color: var(--text-muted) !important;
+}
+.light .text-gray-400 {
+  color: var(--text-muted) !important;
+}
+.light .text-gray-500 {
+  color: #64748b !important; /* slate-500 */
+}
+.light .text-\[\#e2f1f5\] {
+  color: var(--text-main) !important;
+}
+.light .text-\[\#e3e2e2\] {
+  color: var(--text-main) !important;
+}
+.light .text-\[\#b7d2db\] {
+  color: var(--text-highlight) !important;
+}
+
+/* Keep Light-on-Dark Text elements properly white in Dark overlays/lightboxes */
+.light .fixed.inset-0.bg-black\/90,
+.light .fixed.inset-0.bg-black\/95,
+.light .fixed.inset-0.bg-black\/90 *,
+.light .fixed.inset-0.bg-black\/95 * {
+  color: #ffffff !important;
+}
+.light .fixed.inset-0.bg-black\/90 .text-gray-400,
+.light .fixed.inset-0.bg-black\/95 .text-gray-400 {
+  color: #9ca3af !important;
+}
+.light .fixed.inset-0.bg-black\/90 .text-brand-cyan,
+.light .fixed.inset-0.bg-black\/95 .text-brand-cyan {
+  color: var(--color-brand-cyan) !important;
+}
+
+/* Keep text white on top of black covers / images overlays */
+.light .group\/modalimg *,
+.light .group\/modalimg,
+.light .relative.w-full.max-w-sm.aspect-5\/6 *,
+.light .absolute.inset-x-0.bottom-0.bg-gradient-to-t.from-black,
+.light .absolute.inset-x-0.bottom-0.bg-gradient-to-t.from-black * {
+  color: #ffffff !important;
+}
+.light .absolute.inset-x-0.bottom-0.bg-gradient-to-t.from-black .text-gray-400 {
+  color: #d1d5db !important;
+}
+
+/* Dark badges over visuals */
+.light .bg-black\/60,
+.light .bg-black\/75,
+.light .bg-black\/80 {
+  color: #ffffff !important;
+}
+.light .bg-black\/60 *,
+.light .bg-black\/75 *,
+.light .bg-black\/80 * {
+  color: #ffffff !important;
+}
+.light .bg-black\/60 .text-brand-cyan,
+.light .bg-black\/75 .text-brand-cyan,
+.light .bg-black\/80 .text-brand-cyan {
+  color: var(--color-brand-cyan) !important;
+}
+
+/* Premium Interactive Forms / Inputs */
+.light select,
+.light input,
+.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light select:focus,
+.light input:focus,
+.light textarea:focus {
+  border-color: var(--color-brand-cyan) !important;
+  box-shadow: 0 0 0 1px var(--color-brand-cyan) !important;
+}
+
+/* 5. Elegant Premium Light Footer (CSS Selector 8) */
+.light footer {
+  background-color: #f1f5f9 !important; /* slate-100 */
+  border-color: #cbd5e1 !important; /* slate-300 */
+  color: #475569 !important; /* slate-600 */
+}
+.light footer .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+.light footer .border-\[\#343535\] {
+  border-color: #cbd5e1 !important;
+}
+.light footer .border-\[\#1f2020\] {
+  border-color: #e2e8f0 !important;
+}
+.light footer input.bg-\[\#121414\] {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light footer .bg-\[\#121414\] {
+  background-color: #f8fafc !important;
+}
+.light footer .text-gray-500 {
+  color: #64748b !important;
+}
+.light footer .text-gray-600 {
+  color: #94a3b8 !important;
+}
+
+/* Retain white/black where needed, e.g., on colored buttons or distinct elements */
+.light button.bg-brand-cyan,
+.light button.bg-brand-cyan *,
+.light .bg-brand-cyan,
+.light .bg-brand-cyan * {
+  color: #0d0e0e !important;
+}
+.light .text-black {
+  color: #000000 !important;
+}
+
+/* Smooth theme transitions */
+html,
+body,
+section,
+div,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+select,
+input,
+textarea,
+button {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
 }

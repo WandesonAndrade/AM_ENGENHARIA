@@ -4,12 +4,18 @@
  */
 
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Sun, Moon } from "lucide-react";
 import { LogoFull } from "./Logo";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("theme") as "dark" | "light") || "dark";
+    }
+    return "dark";
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +28,20 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === "light") {
+      root.classList.add("light");
+    } else {
+      root.classList.remove("light");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
@@ -80,18 +100,55 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Budget Quick Action */}
-          <button
-            onClick={() => scrollToSection("orcamento")}
-            className="font-mono text-xs font-semibold uppercase tracking-wider bg-brand-cyan hover:bg-[#59b2b8] text-black px-5 py-3 transition-all duration-300 transform active:scale-95 shadow-lg shadow-brand-cyan/20 hover:shadow-brand-cyan/35 flex items-center space-x-2 border border-transparent cursor-pointer font-bold"
-          >
-            <Phone className="w-3.5 h-3.5 mr-1" />
-            <span>FALE CONOSCO</span>
-          </button>
+          <div className="flex items-center space-x-4">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="w-10 h-10 border border-[#343535] hover:border-brand-cyan text-gray-300 hover:text-brand-cyan flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer group relative focus:outline-none"
+              title={
+                theme === "dark" ? "Ativar Modo Claro" : "Ativar Modo Escuro"
+              }
+              aria-label="Alternar tema de cores"
+            >
+              <span className="absolute top-0 left-0 w-1 h-1 border-t border-l border-white/10 group-hover:border-brand-cyan/50" />
+              <span className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-white/10 group-hover:border-brand-cyan/50" />
+
+              {theme === "dark" ? (
+                <Sun className="w-4 h-4 text-brand-cyan transition-transform group-hover:rotate-45" />
+              ) : (
+                <Moon className="w-4 h-4 text-[#1b5259] transition-transform group-hover:-rotate-12" />
+              )}
+            </button>
+
+            {/* Budget Quick Action */}
+            <button
+              onClick={() => scrollToSection("orcamento")}
+              className="font-mono text-xs font-semibold uppercase tracking-wider bg-brand-cyan hover:bg-[#59b2b8] text-black px-5 py-3 transition-all duration-300 transform active:scale-95 shadow-lg shadow-brand-cyan/20 hover:shadow-brand-cyan/35 flex items-center space-x-2 border border-transparent cursor-pointer font-bold"
+            >
+              <Phone className="w-3.5 h-3.5 mr-1" />
+              <span>FALE CONOSCO</span>
+            </button>
+          </div>
         </div>
 
-        {/* Mobile menu button */}
-        <div className="flex items-center lg:hidden">
+        {/* Mobile menu button and theme toggle */}
+        <div className="flex items-center lg:hidden space-x-3">
+          {/* Mobile Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-9 h-9 border border-[#343535] hover:border-brand-cyan text-gray-300 hover:text-brand-cyan flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer relative focus:outline-none"
+            title={
+              theme === "dark" ? "Ativar Modo Claro" : "Ativar Modo Escuro"
+            }
+            aria-label="Alternar tema de cores"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-4 h-4 text-brand-cyan" />
+            ) : (
+              <Moon className="w-4 h-4 text-[#1b5259]" />
+            )}
+          </button>
+
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-white hover:text-brand-cyan transition-colors p-2 focus:outline-none"
@@ -115,9 +172,27 @@ export default function Navbar() {
       >
         <div className="flex flex-col space-y-6 h-full justify-between pb-8">
           <div className="flex flex-col space-y-4">
-            <span className="font-mono text-[10px] uppercase text-[#b7d2db] tracking-widest border-b border-[#343535] pb-2">
-              Navegação Técnica
-            </span>
+            <div className="flex items-center justify-between border-b border-[#343535] pb-2">
+              <span className="font-mono text-[10px] uppercase text-[#b7d2db] tracking-widest">
+                Navegação Técnica
+              </span>
+              <button
+                onClick={toggleTheme}
+                className="font-mono text-[9px] uppercase tracking-wider text-brand-cyan flex items-center space-x-1.5 focus:outline-none cursor-pointer"
+              >
+                {theme === "dark" ? (
+                  <>
+                    <Sun className="w-3.5 h-3.5 text-brand-cyan" />
+                    <span>MODO CLARO</span>
+                  </>
+                ) : (
+                  <>
+                    <Moon className="w-3.5 h-3.5 text-brand-teal" />
+                    <span>MODO ESCURO</span>
+                  </>
+                )}
+              </button>
+            </div>
             {menuItems.map((item) => (
               <button
                 key={item.id}

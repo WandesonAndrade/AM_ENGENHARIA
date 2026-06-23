@@ -22,7 +22,7 @@ import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 export default function App() {
   return (
-    <div className="bg-[#121414] min-h-screen text-white select-none selection:bg-brand-cyan/20 selection:text-brand-cyan">
+    <div className="bg-bg-main min-h-screen text-text-main select-none selection:bg-brand-cyan/20 selection:text-brand-cyan">
       {/* Floating contact hub */}
       <FloatingWhatsApp />
 
