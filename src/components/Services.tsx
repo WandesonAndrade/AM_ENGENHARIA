@@ -152,7 +152,7 @@ export default function Services({ showMobile, setShowMobile }: ServicesProps) {
               ✓ CAD, BIM & REVIT WORKFLOW
             </span>
             <span className="font-mono text-[9px] text-brand-cyan tracking-widest uppercase border border-[#24a5af]/40 px-4 py-2 bg-brand-cyan/5 font-semibold">
-              ✓ REGISTRADO NO CREA-MA com ART
+              ✓ REGISTRO CREA: PI, MG, SP, PR & MA com ART
             </span>
           </div>
         </div>

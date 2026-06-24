@@ -133,7 +133,7 @@ export default function Footer() {
             Termos de Serviço
           </a>
           <a href="#sobre" className="hover:text-gray-400">
-            Registo CREA-SP
+            Registros CREA (PI • MG • SP • PR • MA)
           </a>
         </div>
       </div>

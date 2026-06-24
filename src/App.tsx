@@ -57,7 +57,6 @@ export default function App() {
         <BudgetCalculator />
 
         {/* Client feedback masonry masonry */}
-        <Testimonials />
       </main>
 
       {/* Structured Technical footer */}

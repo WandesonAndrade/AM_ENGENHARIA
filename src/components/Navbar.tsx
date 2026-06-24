@@ -10,12 +10,7 @@ import { LogoFull } from "./Logo";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as "dark" | "light") || "dark";
-    }
-    return "dark";
-  });
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,8 +67,8 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
         isScrolled
-          ? "bg-[#121414]/90 backdrop-blur-md border-[#343535] py-4"
-          : "bg-[#121414]/30 backdrop-blur-xs border-transparent py-6"
+          ? "bg-bg-main/90 backdrop-blur-md border-border-main/50 py-4 shadow-sm"
+          : "bg-bg-main/30 backdrop-blur-xs border-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -92,7 +87,7 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-[#e2f1f5] hover:text-brand-cyan transition-colors relative py-2 focus:outline-none cursor-pointer group"
+                className="text-text-main/90 hover:text-brand-cyan transition-colors relative py-2 focus:outline-none cursor-pointer group font-semibold"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-brand-cyan transition-all duration-300 group-hover:w-full group-hover:left-0" />
@@ -104,7 +99,7 @@ export default function Navbar() {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 border border-[#343535] hover:border-brand-cyan text-gray-300 hover:text-brand-cyan flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer group relative focus:outline-none"
+              className="w-10 h-10 border border-border-main hover:border-brand-cyan text-text-muted hover:text-brand-cyan flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer group relative focus:outline-none"
               title={
                 theme === "dark" ? "Ativar Modo Claro" : "Ativar Modo Escuro"
               }
@@ -116,7 +111,7 @@ export default function Navbar() {
               {theme === "dark" ? (
                 <Sun className="w-4 h-4 text-brand-cyan transition-transform group-hover:rotate-45" />
               ) : (
-                <Moon className="w-4 h-4 text-[#1b5259] transition-transform group-hover:-rotate-12" />
+                <Moon className="w-4 h-4 text-brand-teal transition-transform group-hover:-rotate-12" />
               )}
             </button>
 
@@ -136,7 +131,7 @@ export default function Navbar() {
           {/* Mobile Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="w-9 h-9 border border-[#343535] hover:border-brand-cyan text-gray-300 hover:text-brand-cyan flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer relative focus:outline-none"
+            className="w-9 h-9 border border-border-main hover:border-brand-cyan text-text-muted hover:text-brand-cyan flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer relative focus:outline-none"
             title={
               theme === "dark" ? "Ativar Modo Claro" : "Ativar Modo Escuro"
             }
@@ -145,13 +140,13 @@ export default function Navbar() {
             {theme === "dark" ? (
               <Sun className="w-4 h-4 text-brand-cyan" />
             ) : (
-              <Moon className="w-4 h-4 text-[#1b5259]" />
+              <Moon className="w-4 h-4 text-brand-teal" />
             )}
           </button>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white hover:text-brand-cyan transition-colors p-2 focus:outline-none"
+            className="text-text-main hover:text-brand-cyan transition-colors p-2 focus:outline-none"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -165,15 +160,15 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       <div
-        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-xs bg-[#121414] border-l border-[#343535] z-40 transform transition-transform duration-300 ease-in-out p-6 shadow-2xl ${
+        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-xs bg-bg-main border-l border-border-main z-40 transform transition-transform duration-300 ease-in-out p-6 shadow-2xl ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ top: "72px", height: "calc(100vh - 72px)" }}
       >
         <div className="flex flex-col space-y-6 h-full justify-between pb-8">
           <div className="flex flex-col space-y-4">
-            <div className="flex items-center justify-between border-b border-[#343535] pb-2">
-              <span className="font-mono text-[10px] uppercase text-[#b7d2db] tracking-widest">
+            <div className="flex items-center justify-between border-b border-border-main pb-2">
+              <span className="font-mono text-[10px] uppercase text-text-highlight tracking-widest">
                 Navegação Técnica
               </span>
               <button
@@ -197,7 +192,7 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-left font-sans text-lg font-medium text-[#e3e2e2] hover:text-brand-cyan transition-colors py-2 block border-b border-[#1f2020] cursor-pointer"
+                className="text-left font-sans text-lg font-medium text-text-main hover:text-brand-cyan transition-colors py-2 block border-b border-border-muted cursor-pointer"
               >
                 {item.label}
               </button>
@@ -205,7 +200,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex flex-col space-y-4">
-            <p className="font-mono text-[10px] text-gray-500 text-center">
+            <p className="font-mono text-[10px] text-text-muted text-center">
               AM Engenharia Civil & Estrutural
             </p>
             <button

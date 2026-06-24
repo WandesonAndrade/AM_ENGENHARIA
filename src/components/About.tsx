@@ -69,8 +69,11 @@ export default function About({ onConhecerSolucoes }: AboutProps) {
                 <h3 className="font-sans text-xl font-bold text-white leading-tight">
                   Eng. André Mclelry
                 </h3>
-                <p className="font-sans text-xs text-gray-400 mt-1">
-                  CREA nº 111916768-0
+                <p className="font-sans text-[10px] text-gray-400 mt-1 uppercase tracking-wider">
+                  CREA nº 111916768-0 <br />
+                  <span className="text-brand-cyan">
+                    PI • MG • SP • PR • MA
+                  </span>
                 </p>
               </div>
             </div>
@@ -109,6 +112,16 @@ export default function About({ onConhecerSolucoes }: AboutProps) {
               (Building Information Modeling) através da plataforma Revit, uma
               das mais modernas e eficientes ferramentas do mercado da
               construção civil.
+            </p>
+            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+              O engenheiro possui registro ativo no{" "}
+              <span className="text-brand-cyan font-semibold">CREA</span> nos
+              estados do{" "}
+              <span className="text-white font-semibold">
+                Piauí, Minas Gerais, São Paulo, Paraná e Maranhão
+              </span>
+              , proporcionando cobertura técnica regulamentada e emissão de ART
+              imediata em todas as obras executadas nessas regiões.
             </p>
 
             {(!isMobile || isExpanded) && (

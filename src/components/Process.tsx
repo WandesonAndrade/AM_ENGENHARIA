@@ -116,7 +116,11 @@ export default function Process() {
       status: "Garantia & Entrega",
       duration: "No Encerramento",
       color: "brand-cyan",
-      softwares: ["AutoCAD As-Built", "Adobe Acrobat Pro", "Sistema CREA-MA"],
+      softwares: [
+        "AutoCAD As-Built",
+        "Adobe Acrobat Pro",
+        "Sistemas CREA (PI/MG/SP/PR/MA)",
+      ],
       metrics: [
         { label: "Aprovação em Órgãos Públicos", value: 100 },
         { label: "Conformidade Final de Escopo", value: 100 },
@@ -385,7 +389,7 @@ export default function Process() {
             retrabalho zero.
           </p>
           <div className="font-mono text-[10px] text-brand-cyan uppercase border border-brand-cyan/20 px-3 py-1.5 bg-brand-cyan/5 tracking-wider font-semibold shrink-0">
-            METODOLOGIA HOMOLOGADA CREA-MA
+            METODOLOGIA HOMOLOGADA CREA (PI/MG/SP/PR/MA)
           </div>
         </div>
       </div>
