@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { METHOD_STEPS } from "../data";
 import {
   ClipboardCheck,
@@ -21,6 +21,31 @@ import {
 
 export default function Process() {
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [hasClickedStepMobile, setHasClickedStepMobile] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleStepClick = (idx: number) => {
+    if (isMobile) {
+      if (activeStep === idx) {
+        setHasClickedStepMobile((prev) => !prev);
+      } else {
+        setActiveStep(idx);
+        setHasClickedStepMobile(true);
+      }
+    } else {
+      setActiveStep(idx);
+    }
+  };
 
   // Rich commercial and technical enrichment data for each step
   const stepExtraData = [
@@ -168,13 +193,15 @@ export default function Process() {
 
             <div className="space-y-3" id="process-steps-list">
               {METHOD_STEPS.map((s, idx) => {
-                const isSelected = idx === activeStep;
+                const isSelected = isMobile
+                  ? idx === activeStep && hasClickedStepMobile
+                  : idx === activeStep;
                 const IconComponent = stepExtraData[idx].icon;
 
                 return (
                   <button
                     key={s.step}
-                    onClick={() => setActiveStep(idx)}
+                    onClick={() => handleStepClick(idx)}
                     className={`w-full text-left p-4 md:p-5 border flex items-center justify-between transition-all duration-300 relative group cursor-pointer ${
                       isSelected
                         ? "bg-[#1b1c1c]/90 border-brand-cyan shadow-[0_0_20px_rgba(64,165,170,0.1)] translate-x-2"
@@ -245,105 +272,107 @@ export default function Process() {
           </div>
 
           {/* RIGHT COLUMN: The Interactive technical HUD Console (7 Cols) */}
-          <div className="lg:col-span-7">
-            <div className="bg-[#1b1c1c]/45 border border-[#343535] shadow-2xl relative overflow-hidden group/console">
-              {/* Corner tech styling accents */}
-              <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-brand-cyan/60" />
-              <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-brand-cyan/60" />
-              <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-brand-cyan/60" />
-              <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-brand-cyan/60" />
+          {(!isMobile || hasClickedStepMobile) && (
+            <div className="lg:col-span-7">
+              <div className="bg-[#1b1c1c]/45 border border-[#343535] shadow-2xl relative overflow-hidden group/console">
+                {/* Corner tech styling accents */}
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-brand-cyan/60" />
+                <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-brand-cyan/60" />
+                <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-brand-cyan/60" />
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-brand-cyan/60" />
 
-              {/* Console header bar */}
-              <div className="border-b border-[#343535] px-6 py-4 bg-black/45 flex items-center justify-between font-mono text-[10px] text-gray-400">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-brand-cyan animate-pulse" />
-                  CONSOLE TÉCNICO INTERATIVO // PROJETOS
-                </span>
-                <span className="text-brand-cyan font-bold tracking-widest">
-                  FASE {METHOD_STEPS[activeStep].step} ATIVA
-                </span>
-              </div>
-
-              {/* Console body content */}
-              <div className="p-6 md:p-8 space-y-6">
-                {/* Visual Title, Description and Status */}
-                <div className="space-y-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[9px] bg-brand-cyan/10 border border-brand-cyan/35 text-brand-cyan px-2.5 py-0.5 uppercase tracking-widest font-semibold flex items-center gap-1">
-                      <StepIcon className="w-3 h-3" />
-                      {currentExtraData.status}
-                    </span>
-                    <span className="font-mono text-[9px] bg-[#121414] border border-[#2b2c2c] text-gray-400 px-2.5 py-0.5 flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-brand-cyan/75" />
-                      Duração: <strong>{currentExtraData.duration}</strong>
-                    </span>
-                  </div>
-
-                  <h3 className="font-sans text-xl md:text-2xl font-black uppercase text-white leading-tight">
-                    {METHOD_STEPS[activeStep].title}
-                  </h3>
-
-                  <p className="font-sans text-xs text-gray-400 font-light leading-relaxed">
-                    {METHOD_STEPS[activeStep].description}
-                  </p>
-                </div>
-
-                {/* Deliverables checklist - Highly Commercial convincing feature */}
-                <div className="space-y-3.5">
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-brand-cyan block">
-                    O QUÊ VOCÊ RECEBE DE FATO (ENTREGÁVEIS):
+                {/* Console header bar */}
+                <div className="border-b border-[#343535] px-6 py-4 bg-black/45 flex items-center justify-between font-mono text-[10px] text-gray-400">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-brand-cyan animate-pulse" />
+                    CONSOLE TÉCNICO INTERATIVO // PROJETOS
                   </span>
-                  <div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-3"
-                    id="deliverables-grid"
-                  >
-                    {currentExtraData.deliverables.map((deliv, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start space-x-2.5 p-2 bg-[#121414]/40 border border-[#242525] hover:border-gray-800 transition-colors duration-300"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-brand-cyan shrink-0 mt-0.5" />
-                        <span className="font-sans text-[11px] text-gray-300 font-light leading-snug">
-                          {deliv}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  <span className="text-brand-cyan font-bold tracking-widest">
+                    FASE {METHOD_STEPS[activeStep].step} ATIVA
+                  </span>
                 </div>
 
-                {/* Softwares details */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-[#343535] gap-4">
-                  <div>
-                    <span className="font-mono text-[9px] text-gray-500 uppercase tracking-wider block mb-2">
-                      TECNOLOGIA EMPREGADA
+                {/* Console body content */}
+                <div className="p-6 md:p-8 space-y-6">
+                  {/* Visual Title, Description and Status */}
+                  <div className="space-y-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-mono text-[9px] bg-brand-cyan/10 border border-brand-cyan/35 text-brand-cyan px-2.5 py-0.5 uppercase tracking-widest font-semibold flex items-center gap-1">
+                        <StepIcon className="w-3 h-3" />
+                        {currentExtraData.status}
+                      </span>
+                      <span className="font-mono text-[9px] bg-[#121414] border border-[#2b2c2c] text-gray-400 px-2.5 py-0.5 flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-brand-cyan/75" />
+                        Duração: <strong>{currentExtraData.duration}</strong>
+                      </span>
+                    </div>
+
+                    <h3 className="font-sans text-xl md:text-2xl font-black uppercase text-white leading-tight">
+                      {METHOD_STEPS[activeStep].title}
+                    </h3>
+
+                    <p className="font-sans text-xs text-gray-400 font-light leading-relaxed">
+                      {METHOD_STEPS[activeStep].description}
+                    </p>
+                  </div>
+
+                  {/* Deliverables checklist - Highly Commercial convincing feature */}
+                  <div className="space-y-3.5">
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-brand-cyan block">
+                      O QUÊ VOCÊ RECEBE DE FATO (ENTREGÁVEIS):
                     </span>
                     <div
-                      className="flex flex-wrap gap-1.5"
-                      id="software-badges"
+                      className="grid grid-cols-1 md:grid-cols-2 gap-3"
+                      id="deliverables-grid"
                     >
-                      {currentExtraData.softwares.map((sw) => (
-                        <span
-                          key={sw}
-                          className="font-mono text-[9px] bg-black/60 border border-white/5 text-gray-300 px-2 py-1 tracking-tight"
+                      {currentExtraData.deliverables.map((deliv, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start space-x-2.5 p-2 bg-[#121414]/40 border border-[#242525] hover:border-gray-800 transition-colors duration-300"
                         >
-                          {sw}
-                        </span>
+                          <CheckCircle2 className="w-4 h-4 text-brand-cyan shrink-0 mt-0.5" />
+                          <span className="font-sans text-[11px] text-gray-300 font-light leading-snug">
+                            {deliv}
+                          </span>
+                        </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Immediate Action Button */}
-                  <button
-                    onClick={scrollToContact}
-                    className="group border border-brand-cyan bg-brand-cyan/10 hover:bg-brand-cyan hover:text-black text-brand-cyan px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all duration-300 shrink-0 cursor-pointer shadow-[0_0_15px_rgba(64,165,170,0.05)]"
-                  >
-                    <span>FALAR SOBRE ESTE PASSO</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  {/* Softwares details */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-[#343535] gap-4">
+                    <div>
+                      <span className="font-mono text-[9px] text-gray-500 uppercase tracking-wider block mb-2">
+                        TECNOLOGIA EMPREGADA
+                      </span>
+                      <div
+                        className="flex flex-wrap gap-1.5"
+                        id="software-badges"
+                      >
+                        {currentExtraData.softwares.map((sw) => (
+                          <span
+                            key={sw}
+                            className="font-mono text-[9px] bg-black/60 border border-white/5 text-gray-300 px-2 py-1 tracking-tight"
+                          >
+                            {sw}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Immediate Action Button */}
+                    <button
+                      onClick={scrollToContact}
+                      className="group border border-brand-cyan bg-brand-cyan/10 hover:bg-brand-cyan hover:text-black text-brand-cyan px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all duration-300 shrink-0 cursor-pointer shadow-[0_0_15px_rgba(64,165,170,0.05)]"
+                    >
+                      <span>FALAR SOBRE ESTE PASSO</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Process callout warning */}
