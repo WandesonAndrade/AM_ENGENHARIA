@@ -18,6 +18,7 @@ import {
   Building,
   ZoomIn,
 } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] =
@@ -240,12 +241,11 @@ export default function Portfolio() {
               >
                 {/* Image Container with Hover zoom */}
                 <div className="relative h-72 overflow-hidden bg-[#121414] shrink-0 border-b border-[#343535] group-hover:border-brand-cyan/30 transition-all duration-500">
-                  <img
+                  <OptimizedImage
                     key={activeImgIndex}
                     src={imagesList[activeImgIndex]}
                     alt={`${proj.title} - Imagem ${activeImgIndex + 1}`}
                     className="w-full h-full object-cover object-center group-hover:scale-[1.08] transition-all duration-700 select-none animate-fade-in filter brightness-95 contrast-[1.01] group-hover:brightness-105"
-                    loading="lazy"
                   />
 
                   {/* Magnified zoom action top right on hover */}
@@ -456,7 +456,7 @@ export default function Portfolio() {
           >
             {/* Image banner inside modal */}
             <div className="h-64 sm:h-80 relative bg-black select-none overflow-hidden group/modalimg">
-              <img
+              <OptimizedImage
                 key={modalImageIndex}
                 src={
                   selectedProject.images && selectedProject.images.length > 0
@@ -722,7 +722,7 @@ export default function Portfolio() {
               <div className="w-4 h-4 border-b-2 border-r-2 border-brand-cyan absolute bottom-0 right-0" />
             </div>
 
-            <img
+            <OptimizedImage
               key={fullscreenImageIndex}
               src={fullscreenImagesList[fullscreenImageIndex]}
               alt="Visualização Ampliada do Projeto"

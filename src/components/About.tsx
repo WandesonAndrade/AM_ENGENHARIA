@@ -14,6 +14,7 @@ import {
   ChevronUp,
   ChevronRight,
 } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 interface AboutProps {
   onConhecerSolucoes?: () => void;
@@ -52,7 +53,7 @@ export default function About({ onConhecerSolucoes }: AboutProps) {
             <div className="absolute -bottom-4 -left-4 w-4 h-4 border-b-2 border-l-2 border-[#343535]" />
 
             <div className="relative w-full max-w-sm aspect-5/6 bg-[#1b1c1c] overflow-hidden border border-[#343535] group-hover:border-brand-cyan/40 transition-colors duration-500">
-              <img
+              <OptimizedImage
                 src={DIRECTOR_AVATAR}
                 alt="Eng. André Mclelry, Fundador & Diretor Técnico"
                 id="director-profile-photo"

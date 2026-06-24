@@ -11,6 +11,7 @@ import {
   FileCheck,
   Award,
 } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 export default function Hero() {
   const handleScrollToEstimate = () => {
@@ -49,10 +50,11 @@ export default function Hero() {
     <section className="relative min-h-screen bg-[#121414] overflow-hidden flex items-center pt-24 lg:pt-32 pb-16">
       {/* Background with Dark Multi-grade Overlays */}
       <div className="absolute inset-0 z-0">
-        <img
+        <OptimizedImage
           src={HERO_BG_IMAGE}
           alt="Canteiro de obras de engenharia civil"
           className="w-full h-full object-cover object-center opacity-45 scale-105 select-none"
+          isHighPriority={true}
         />
         {/* Gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-[#121414]/85 to-[#121414]/40" />

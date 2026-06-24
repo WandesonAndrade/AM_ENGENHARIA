@@ -57,6 +57,8 @@
   --animate-spin-slow: spin 20s linear infinite;
   --animate-scan-line: scan-line 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   --animate-shine: shine 1.6s ease-in-out;
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-scan-line-horizontal: scan-line-horizontal 2.5s ease-in-out infinite;
 
   @keyframes fade-in {
     from {
@@ -84,6 +86,24 @@
     }
     100% {
       left: 200%;
+    }
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes scan-line-horizontal {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
     }
   }
 }
