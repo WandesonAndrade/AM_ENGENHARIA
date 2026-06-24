@@ -452,6 +452,167 @@ html {
   color: #000000 !important;
 }
 
+/* Light mode styles for the Portfolio Lightbox Detail Modal & its specs body */
+.light section#portfolio div.fixed.inset-0 .max-w-3xl.bg-\[\#1b1c1c\] {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-main) !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15) !important;
+}
+
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  > div:nth-of-type(2) {
+  background-color: var(--bg-card) !important;
+}
+
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  > div:nth-of-type(2)
+  * {
+  color: var(--text-main) !important;
+}
+
+/* Gray/muted metadata labels inside specs body */
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  > div:nth-of-type(2)
+  .text-gray-500,
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  > div:nth-of-type(2)
+  .text-gray-400,
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  > div:nth-of-type(2)
+  .text-gray-300 {
+  color: var(--text-muted) !important;
+}
+
+/* Light headers inside modal description and highlights */
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  > div:nth-of-type(2)
+  .text-\[\#b7d2db\] {
+  color: var(--color-brand-teal) !important;
+  font-weight: 700 !important;
+}
+
+/* Meta specs bar inside the modal */
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  .bg-\[\#121414\] {
+  background-color: var(--bg-main) !important;
+  border-color: var(--border-muted) !important;
+}
+
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  .bg-\[\#121414\]
+  .text-white {
+  color: var(--text-main) !important;
+}
+
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  .bg-\[\#121414\]
+  .text-brand-cyan {
+  color: var(--color-brand-teal) !important;
+}
+
+/* Dividers and structural borders */
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  .bg-\[\#343535\],
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  .border-\[\#343535\],
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  .border-t {
+  background-color: var(--border-muted) !important;
+  border-color: var(--border-muted) !important;
+}
+
+/* Highlights indices list icons */
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  .text-brand-cyan {
+  color: var(--color-brand-teal) !important;
+}
+
+/* Solicitar Consulta primary button */
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  button.bg-brand-cyan {
+  background-color: var(--color-brand-cyan) !important;
+  color: #ffffff !important;
+}
+
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  button.bg-brand-cyan:hover {
+  background-color: var(--color-brand-teal) !important;
+}
+
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  button.bg-brand-cyan
+  * {
+  color: #ffffff !important;
+}
+
+/* Fechar Memorial secondary button */
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  button.border-\[\#343535\] {
+  border-color: var(--border-main) !important;
+  background-color: var(--bg-main) !important;
+  color: var(--text-muted) !important;
+}
+
+.light
+  section#portfolio
+  div.fixed.inset-0
+  .max-w-3xl.bg-\[\#1b1c1c\]
+  button.border-\[\#343535\]:hover {
+  background-color: var(--border-muted) !important;
+  color: var(--text-main) !important;
+}
+
 /* Smooth theme transitions */
 html,
 body,
