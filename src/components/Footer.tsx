@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { HardHat, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import { LogoIcon } from "./Logo";
 
 export default function Footer() {
   const scrollToSection = (id: string) => {
@@ -31,9 +32,7 @@ export default function Footer() {
         {/* Column 1: Brand briefs & Dynamic Online/On-site service - Columns 1 to 7 */}
         <div className="md:col-span-7 flex flex-col space-y-4">
           <div className="flex items-center space-x-3 text-left">
-            <div className="w-9 h-9 bg-linear-to-br from-[#40a5aa] to-[#1b5259] flex items-center justify-center relative">
-              <HardHat className="w-4 h-4 text-black stroke-[2.5]" />
-            </div>
+            <LogoIcon className="w-9 h-9 shrink-0" />
             <div>
               <span className="font-sans text-lg font-black uppercase tracking-tight text-white block">
                 AM <span className="text-brand-cyan">ENGENHARIA</span>
