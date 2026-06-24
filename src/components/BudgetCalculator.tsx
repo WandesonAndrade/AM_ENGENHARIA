@@ -35,14 +35,9 @@ export default function BudgetCalculator() {
     e.preventDefault();
     setValidationError("");
 
-    if (
-      !clientName.trim() ||
-      !clientEmail.trim() ||
-      !clientPhone.trim() ||
-      !clientNotes.trim()
-    ) {
+    if (!clientName.trim() || !clientNotes.trim()) {
       setValidationError(
-        "Por favor, preencha todos os campos obrigatórios (Nome, E-mail, Telefone/WhatsApp e Descrição do Projeto).",
+        "Por favor, preencha todos os campos obrigatórios (Nome e Descrição do Projeto).",
       );
       return;
     }
@@ -68,8 +63,8 @@ export default function BudgetCalculator() {
       `Olá AM Engenharia! Gostaria de solicitar uma consultoria de viabilidade e orçamento para o meu projeto.\n\n` +
       `📋 *DADOS DO CONTATO:*\n` +
       `- *Nome:* ${clientName}\n` +
-      `- *E-mail:* ${clientEmail}\n` +
-      `- *Telefone/WhatsApp:* ${clientPhone}\n\n` +
+      `- *E-mail:* ${clientEmail.trim() ? clientEmail : "Não informado"}\n` +
+      `- *Telefone/WhatsApp:* ${clientPhone.trim() ? clientPhone : "Não informado"}\n\n` +
       `🏗️ *DETALHES DO PROJETO:*\n` +
       `- *Tipo:* ${projectTypeLabel}\n` +
       `- *Área Estimada:* ${areaText}\n\n` +
@@ -80,8 +75,8 @@ export default function BudgetCalculator() {
     try {
       // Redirect to WhatsApp API
       const formattedText = encodeURIComponent(message);
-      // Using standard placeholder number 5511999999999 for São Paulo
-      const whatsappURL = `https://wa.me/5511999999999?text=${formattedText}`;
+      // Using user provided WhatsApp number 5599984400511
+      const whatsappURL = `https://wa.me/5599984400511?text=${formattedText}`;
 
       // Save submission state
       setIsSubmitted(true);
@@ -283,13 +278,12 @@ export default function BudgetCalculator() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="font-mono text-[9px] text-[#b7d2db] uppercase tracking-wider block">
-                      E-mail *
+                      E-mail (Opcional)
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                       <input
                         type="email"
-                        required
                         placeholder="nome@dominio.com"
                         value={clientEmail}
                         onChange={(e) => setClientEmail(e.target.value)}
@@ -300,13 +294,12 @@ export default function BudgetCalculator() {
 
                   <div className="space-y-1.5">
                     <label className="font-mono text-[9px] text-[#b7d2db] uppercase tracking-wider block">
-                      Telefone (WhatsApp) *
+                      Telefone (WhatsApp) (Opcional)
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                       <input
                         type="tel"
-                        required
                         placeholder="(11) 99999-9999"
                         value={clientPhone}
                         onChange={(e) => setClientPhone(e.target.value)}

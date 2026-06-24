@@ -31,7 +31,7 @@ export default function About() {
                 src={DIRECTOR_AVATAR}
                 alt="Eng. André Mclelry, Fundador & Diretor Técnico"
                 id="director-profile-photo"
-                className="w-full h-full object-cover object-center transition-all duration-700 scale-100 group-hover:scale-105 filter brightness-90 group-hover:brightness-105 contrast-105 group-hover:contrast-100"
+                className="w-full h-full object-cover object-top transition-all duration-700 scale-100 group-hover:scale-105 filter brightness-90 group-hover:brightness-105 contrast-105 group-hover:contrast-100"
               />
               {/* Brand cyan geometric overlay that fades on hover */}
               <div className="absolute inset-0 bg-brand-cyan/10 mix-blend-color opacity-80 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
@@ -44,7 +44,7 @@ export default function About() {
                   Eng. André Mclelry
                 </h3>
                 <p className="font-sans text-xs text-gray-400 mt-1">
-                  CREA-SP nº 111916768-0
+                  CREA nº 111916768-0
                 </p>
               </div>
             </div>

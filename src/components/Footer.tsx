@@ -3,27 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, FormEvent } from "react";
-import { HardHat, Phone, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { HardHat, Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
-
-  const handleSubscribe = (e: FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-
-    // Simulate real database signup storage
-    try {
-      localStorage.setItem("am_engineering_newsletter", email.trim());
-      setIsSubscribed(true);
-      setEmail("");
-    } catch (err) {
-      console.warn("Unable to subscribe newsletter locally:", err);
-    }
-  };
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -45,9 +27,9 @@ export default function Footer() {
       {/* Visual background details */}
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-cyan/2 blur-3xl rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-        {/* Column 1: Brand briefs - Columns 1 to 4 */}
-        <div className="md:col-span-4 flex flex-col space-y-4">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+        {/* Column 1: Brand briefs & Dynamic Online/On-site service - Columns 1 to 7 */}
+        <div className="md:col-span-7 flex flex-col space-y-4">
           <div className="flex items-center space-x-3 text-left">
             <div className="w-9 h-9 bg-linear-to-br from-[#40a5aa] to-[#1b5259] flex items-center justify-center relative">
               <HardHat className="w-4 h-4 text-black stroke-[2.5]" />
@@ -62,32 +44,33 @@ export default function Footer() {
             </div>
           </div>
 
-          <p className="font-sans text-xs text-gray-500 leading-relaxed max-w-sm font-light">
+          <p className="font-sans text-xs text-gray-500 leading-relaxed max-w-md font-light">
             Fundada pelo Eng. André Mclelry, a AM Engenharia nasceu com o
             propósito de transformar projetos em soluções inteligentes, unindo
             tecnologia, inovação e excelência técnica.
           </p>
 
-          <div className="space-y-2 pt-2 text-xs font-sans">
+          <div className="space-y-2.5 pt-2 text-xs font-sans">
             <div className="flex items-center space-x-2 text-gray-400">
               <Phone className="w-3.5 h-3.5 text-brand-cyan shrink-0" />
-              <span className="font-light">(11) 99999-9999</span>
+              <span className="font-light">(99) 98440-0511</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-400">
               <Mail className="w-3.5 h-3.5 text-brand-cyan shrink-0" />
               <span className="font-light">andremclelry@hotmail.com</span>
             </div>
-            <div className="flex items-center space-x-2 text-gray-400">
-              <MapPin className="w-3.5 h-3.5 text-brand-cyan shrink-0" />
-              <span className="truncate font-light">
-                Av. Paulista, nº 2000 - Jardins, São Paulo - SP
+            <div className="flex items-start space-x-2 text-gray-400">
+              <MapPin className="w-3.5 h-3.5 text-brand-cyan shrink-0 mt-0.5" />
+              <span className="font-light leading-relaxed">
+                Atendimento online, no local da obra ou visitas personalizadas
+                ao cliente.
               </span>
             </div>
           </div>
         </div>
 
-        {/* Column 2: Navigation Matrix - Columns 5 to 7 */}
-        <div className="md:col-span-3 flex flex-col space-y-4">
+        {/* Column 2: Navigation Matrix - Columns 8 to 12 */}
+        <div className="md:col-span-5 flex flex-col space-y-4 md:pl-12">
           <h4 className="font-mono text-[10px] text-white uppercase tracking-widest border-b border-[#343535] pb-2">
             NAVEGAÇÃO TÉCNICA
           </h4>
@@ -133,44 +116,6 @@ export default function Footer() {
               </button>
             </li>
           </ul>
-        </div>
-
-        {/* Column 3: Newsletter Sign-up - Columns 8 to 12 */}
-        <div className="md:col-span-5 flex flex-col space-y-4">
-          <h4 className="font-mono text-[10px] text-white uppercase tracking-widest border-b border-[#343535] pb-2">
-            MANTENHA-SE INFORMADO
-          </h4>
-          <p className="font-sans text-xs text-gray-500 leading-relaxed">
-            Assine nosso sumário técnico bimestral com índices regionais
-            CUB/SINAPI, patologias prediais comuns e insights de cálculo
-            estrutural.
-          </p>
-
-          {isSubscribed ? (
-            <div className="bg-[#121414] border border-green-500/20 p-4 flex items-center space-x-3 text-green-400 text-xs">
-              <CheckCircle2 className="w-5 h-5 shrink-0" />
-              <span>
-                Inscrição confirmada! Você receberá nosso informativo técnico.
-              </span>
-            </div>
-          ) : (
-            <form onSubmit={handleSubscribe} className="flex space-x-2">
-              <input
-                type="email"
-                placeholder="Insira seu melhor e-mail"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-[#121414] border border-[#343535] focus:border-brand-cyan/70 text-white font-sans text-xs px-4 py-3 w-full focus:outline-none rounded-none"
-              />
-              <button
-                type="submit"
-                className="bg-brand-cyan hover:bg-[#59b2b8] text-black font-mono text-xs font-bold uppercase tracking-wider px-5 transition-colors cursor-pointer flex items-center justify-center shrink-0 rounded-none"
-              >
-                <Send className="w-4 h-4 text-black" />
-              </button>
-            </form>
-          )}
         </div>
       </div>
 
