@@ -44,7 +44,7 @@ export default function About() {
                   Eng. André Mclelry
                 </h3>
                 <p className="font-sans text-xs text-gray-400 mt-1">
-                  CREA-SP: 00000000
+                  CREA-SP nº 111916768-0
                 </p>
               </div>
             </div>
@@ -62,25 +62,53 @@ export default function About() {
             <h2 className="font-sans text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-none">
               AM ENGENHARIA: <br />
               <span className="text-linear-to-r from-white to-gray-400">
-                MATERIALIZANDO VISÕES.
+                CONCRETIZANDO SONHOS.
               </span>
             </h2>
 
-            <p className="font-sans text-base text-gray-300 leading-relaxed font-light">
-              Com mais de 10 anos de experiência acumulada no mercado paulista,
-              a AM Engenharia foi fundada com a missão clara de devolver o ativo
-              mais escasso na construção civil: a{" "}
-              <span className="text-white font-semibold">paz de espírito</span>.
+            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+              A <span className="text-white font-semibold">AM Engenharia</span>{" "}
+              nasceu com o propósito de transformar projetos em soluções
+              inteligentes, unindo tecnologia, inovação e excelência técnica
+              para entregar resultados que geram valor em todas as etapas da
+              construção.
             </p>
-            <p className="font-sans text-base text-gray-300 leading-relaxed font-light">
-              Diferente de construtoras externas estruturais que operam com
-              orçamentos instáveis, nós baseamos nossa governança e reputação no
-              tripé da{" "}
+            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+              Desde 2020, atuamos no desenvolvimento de projetos para
+              empreendimentos residenciais, comerciais e industriais, utilizando
+              a{" "}
               <span className="text-brand-cyan font-semibold">
-                precisão numérica
-              </span>
-              , mitigando despesas redundantes através de metodologia BIM em
-              todas as frentes de cálculo e execução.
+                metodologia BIM
+              </span>{" "}
+              (Building Information Modeling) através da plataforma Revit, uma
+              das mais modernas e eficientes ferramentas do mercado da
+              construção civil.
+            </p>
+            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+              Nosso diferencial está na{" "}
+              <span className="text-white font-semibold">
+                integração de todas as disciplinas
+              </span>{" "}
+              do projeto, oferecendo desde o projeto arquitetônico até as
+              instalações complementares, com alto nível de detalhamento,
+              compatibilização e precisão. Isso proporciona maior
+              previsibilidade, redução de retrabalhos, otimização de custos e
+              mais segurança durante a execução da obra.
+            </p>
+            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+              Cada projeto é desenvolvido de forma personalizada, sempre em
+              conformidade com as normas técnicas brasileiras vigentes,
+              garantindo qualidade, eficiência e confiabilidade para nossos
+              clientes.
+            </p>
+            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+              Na AM Engenharia, não entregamos apenas projetos. Entregamos
+              soluções que transformam ideias em empreendimentos bem planejados,
+              modernos e preparados para o futuro.
+            </p>
+            <p className="font-sans text-sm text-brand-cyan font-semibold leading-relaxed">
+              AM Engenharia – Projetando com tecnologia, construindo com
+              confiança.
             </p>
 
             {/* Industrial Separation Line */}

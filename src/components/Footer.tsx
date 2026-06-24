@@ -63,10 +63,9 @@ export default function Footer() {
           </div>
 
           <p className="font-sans text-xs text-gray-500 leading-relaxed max-w-sm font-light">
-            Fundada pelo Eng. Adrian M. Silveira, somos uma empresa dedicada a
-            entregar segurança, previsibilidade fiscal e integridade física em
-            projetos residenciais de alto padrão e corporativos no estado de São
-            Paulo.
+            Fundada pelo Eng. André Mclelry, a AM Engenharia nasceu com o
+            propósito de transformar projetos em soluções inteligentes, unindo
+            tecnologia, inovação e excelência técnica.
           </p>
 
           <div className="space-y-2 pt-2 text-xs font-sans">
@@ -76,7 +75,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center space-x-2 text-gray-400">
               <Mail className="w-3.5 h-3.5 text-brand-cyan shrink-0" />
-              <span className="font-light">contato@amengenharia.com</span>
+              <span className="font-light">andremclelry@hotmail.com</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-400">
               <MapPin className="w-3.5 h-3.5 text-brand-cyan shrink-0" />

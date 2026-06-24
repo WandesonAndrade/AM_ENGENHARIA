@@ -6,9 +6,9 @@
 import { Project, Service, Testimonial } from "./types";
 
 export const HERO_BG_IMAGE =
-  "/src/assets/images/hero_background_1781810209909.jpg";
+  "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/hero_background_1781810209909.jpg";
 export const DIRECTOR_AVATAR =
-  "/src/assets/images/director_avatar_1781810270962.jpg";
+  "https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/src/assets/images/en_andre.jpeg";
 
 export const SERVICES: Service[] = [
   {
