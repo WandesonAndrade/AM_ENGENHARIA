@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, ComponentType } from "react";
+import { useState, useEffect, ComponentType } from "react";
 import { SERVICES } from "../data";
 import { Service } from "../types";
 import {
@@ -21,6 +21,8 @@ import {
   ChevronRight,
   ShieldCheck,
   Cpu,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 const IconMap: { [key: string]: ComponentType<{ className?: string }> } = {
@@ -46,8 +48,33 @@ const SERVICE_SUB_SPECIALTIES: Record<string, string[]> = {
   gas: ["Centrais de Gás Prediais", "Tubulação Cobre/Pealpe", "NBR 13523"],
 };
 
-export default function Services() {
+interface ServicesProps {
+  showMobile?: boolean;
+  setShowMobile?: (show: boolean) => void;
+}
+
+export default function Services({ showMobile, setShowMobile }: ServicesProps) {
   const [activeService, setActiveService] = useState<Service | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [internalShowMobile, setInternalShowMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const isExpanded = showMobile !== undefined ? showMobile : internalShowMobile;
+  const toggleExpanded = () => {
+    if (setShowMobile) {
+      setShowMobile(!isExpanded);
+    } else {
+      setInternalShowMobile(!isExpanded);
+    }
+  };
 
   const handleConsultService = (serviceId: string) => {
     setActiveService(null);
@@ -131,74 +158,112 @@ export default function Services() {
         </div>
 
         {/* Services Grid: Optimized to 3-column layout to fit 6 services beautifully as 2 balanced rows */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {SERVICES.map((s, idx) => {
-            const IconComp = IconMap[s.icon] || Zap;
-            const subSpecialties = SERVICE_SUB_SPECIALTIES[s.id] || [];
+        {isMobile && !isExpanded ? (
+          <div className="flex flex-col items-center justify-center py-12 px-6 bg-[#1b1c1c]/20 border border-dashed border-[#343535] text-center space-y-6">
+            <div className="w-16 h-16 bg-[#121414] border border-brand-cyan/30 flex items-center justify-center shadow-md">
+              <Cpu className="w-6 h-6 text-brand-cyan animate-pulse" />
+            </div>
+            <div className="space-y-2 max-w-sm">
+              <h3 className="font-sans text-lg font-bold text-white uppercase tracking-tight">
+                PROJETOS BIM & ENGENHARIA ESPECIALIZADA
+              </h3>
+              <p className="font-sans text-xs text-gray-400 font-light leading-relaxed">
+                Clique abaixo para visualizar o catálogo completo de soluções
+                integradas da AM Engenharia.
+              </p>
+            </div>
+            <button
+              onClick={toggleExpanded}
+              className="font-mono text-xs uppercase tracking-widest px-8 py-4 bg-brand-cyan text-black hover:bg-brand-cyan/90 transition-all duration-300 font-bold cursor-pointer flex items-center space-x-2 shadow-[0_0_20px_rgba(64,165,170,0.15)]"
+            >
+              <span>CONHECER NOSSAS SOLUÇÕES</span>
+              <ChevronDown className="w-4 h-4 text-black animate-bounce" />
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {SERVICES.map((s, idx) => {
+                const IconComp = IconMap[s.icon] || Zap;
+                const subSpecialties = SERVICE_SUB_SPECIALTIES[s.id] || [];
 
-            return (
-              <div
-                key={s.id}
-                onClick={() => setActiveService(s)}
-                className="group relative bg-[#1b1c1c]/35 hover:bg-[#1b1c1c]/80 border border-[#343535] hover:border-brand-cyan/50 p-6 md:p-8 transition-all duration-300 flex flex-col justify-between h-[360px] cursor-pointer shadow-xl overflow-hidden relative"
-              >
-                {/* Structural corner styling overlays (inspired by bim design software templates) */}
-                <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-white/10 group-hover:border-brand-cyan/40" />
-                <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t border-r border-white/10 group-hover:border-brand-cyan/40" />
-                <div className="absolute bottom-2 left-2 w-1.5 h-1.5 border-b border-l border-white/10 group-hover:border-brand-cyan/40" />
-                <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-white/10 group-hover:border-brand-cyan/40" />
+                return (
+                  <div
+                    key={s.id}
+                    onClick={() => setActiveService(s)}
+                    className="group relative bg-[#1b1c1c]/35 hover:bg-[#1b1c1c]/80 border border-[#343535] hover:border-brand-cyan/50 p-6 md:p-8 transition-all duration-300 flex flex-col justify-between h-[360px] cursor-pointer shadow-xl overflow-hidden"
+                  >
+                    {/* Structural corner styling overlays (inspired by bim design software templates) */}
+                    <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-white/10 group-hover:border-brand-cyan/40" />
+                    <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t border-r border-white/10 group-hover:border-brand-cyan/40" />
+                    <div className="absolute bottom-2 left-2 w-1.5 h-1.5 border-b border-l border-white/10 group-hover:border-brand-cyan/40" />
+                    <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-white/10 group-hover:border-brand-cyan/40" />
 
-                {/* Top structural accent bar */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-gradient-to-r group-hover:from-brand-cyan group-hover:to-brand-teal transition-all duration-500" />
+                    {/* Top structural accent bar */}
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-gradient-to-r group-hover:from-brand-cyan group-hover:to-brand-teal transition-all duration-500" />
 
-                {/* Visual Background technical ID indicator */}
-                <div className="absolute right-4 top-4 font-mono text-[28px] font-black text-white/5 group-hover:text-brand-cyan/8 transition-colors select-none">
-                  [{String(idx + 1).padStart(2, "0")}]
-                </div>
+                    {/* Visual Background technical ID indicator */}
+                    <div className="absolute right-4 top-4 font-mono text-[28px] font-black text-white/5 group-hover:text-brand-cyan/8 transition-colors select-none">
+                      [{String(idx + 1).padStart(2, "0")}]
+                    </div>
 
-                <div>
-                  {/* Icon Box */}
-                  <div className="w-12 h-12 bg-[#121414] border border-[#343535] group-hover:border-brand-cyan/50 flex items-center justify-center mb-6 transition-all duration-300 shadow-md">
-                    <IconComp className="w-5 h-5 text-brand-cyan group-hover:scale-110 transition-transform duration-300" />
-                  </div>
+                    <div>
+                      {/* Icon Box */}
+                      <div className="w-12 h-12 bg-[#121414] border border-[#343535] group-hover:border-brand-cyan/50 flex items-center justify-center mb-6 transition-all duration-300 shadow-md">
+                        <IconComp className="w-5 h-5 text-brand-cyan group-hover:scale-110 transition-transform duration-300" />
+                      </div>
 
-                  {/* Title and Short Description */}
-                  <div className="space-y-2">
-                    <h3 className="font-sans text-lg md:text-xl font-bold text-white group-hover:text-brand-cyan transition-colors uppercase tracking-tight">
-                      {s.title}
-                    </h3>
-                    <p className="font-sans text-xs text-gray-400 leading-relaxed line-clamp-3 font-light pb-4 border-b border-[#242525]">
-                      {s.description}
-                    </p>
-                  </div>
+                      {/* Title and Short Description */}
+                      <div className="space-y-2">
+                        <h3 className="font-sans text-lg md:text-xl font-bold text-white group-hover:text-brand-cyan transition-colors uppercase tracking-tight">
+                          {s.title}
+                        </h3>
+                        <p className="font-sans text-xs text-gray-400 leading-relaxed line-clamp-3 font-light pb-4 border-b border-[#242525]">
+                          {s.description}
+                        </p>
+                      </div>
 
-                  {/* Quick features list (Badges of Technical scope) */}
-                  <div className="mt-4 flex flex-wrap gap-1">
-                    {subSpecialties.map((spec) => (
-                      <span
-                        key={spec}
-                        className="font-mono text-[9px] bg-black/45 border border-white/5 hover:border-brand-cyan/30 text-gray-300 hover:text-white px-2 py-0.5 uppercase tracking-tight transition-colors"
-                      >
-                        {spec}
+                      {/* Quick features list (Badges of Technical scope) */}
+                      <div className="mt-4 flex flex-wrap gap-1">
+                        {subSpecialties.map((spec) => (
+                          <span
+                            key={spec}
+                            className="font-mono text-[9px] bg-black/45 border border-white/5 hover:border-brand-cyan/30 text-gray-300 hover:text-white px-2 py-0.5 uppercase tracking-tight transition-colors"
+                          >
+                            {spec}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Footer interactive trigger link */}
+                    <div className="flex items-center justify-between text-brand-cyan group-hover:text-white pt-4 mt-2">
+                      <div className="flex items-center space-x-2 text-[10px] font-mono font-bold tracking-widest uppercase">
+                        <span>SABER MAIS SOBRE {s.title}</span>
+                        <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-2 transition-transform duration-300 text-brand-cyan" />
+                      </div>
+                      <span className="font-mono text-[8px] text-gray-600 group-hover:text-brand-cyan/50 uppercase">
+                        AM.BIM // ART_ID
                       </span>
-                    ))}
+                    </div>
                   </div>
-                </div>
+                );
+              })}
+            </div>
 
-                {/* Footer interactive trigger link */}
-                <div className="flex items-center justify-between text-brand-cyan group-hover:text-white pt-4 mt-2">
-                  <div className="flex items-center space-x-2 text-[10px] font-mono font-bold tracking-widest uppercase">
-                    <span>SABER MAIS SOBRE {s.title}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-2 transition-transform duration-300 text-brand-cyan" />
-                  </div>
-                  <span className="font-mono text-[8px] text-gray-600 group-hover:text-brand-cyan/50 uppercase">
-                    AM.BIM // ART_ID
-                  </span>
-                </div>
+            {isMobile && isExpanded && (
+              <div className="flex justify-center mt-10">
+                <button
+                  onClick={toggleExpanded}
+                  className="font-mono text-xs uppercase tracking-widest px-8 py-4 bg-[#1b1c1c]/60 hover:bg-brand-cyan hover:text-black text-brand-cyan border border-brand-cyan/30 hover:border-transparent transition-all duration-300 cursor-pointer flex items-center space-x-2.5 shadow-[0_0_15px_rgba(64,165,170,0.05)] hover:shadow-[0_0_20px_rgba(64,165,170,0.2)]"
+                >
+                  <span>OCULTAR SOLUÇÕES</span>
+                  <ChevronUp className="w-4 h-4" />
+                </button>
               </div>
-            );
-          })}
-        </div>
+            )}
+          </>
+        )}
       </div>
 
       {/* Interactive Detail Modal / Dialog */}

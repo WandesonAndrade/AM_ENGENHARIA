@@ -8,6 +8,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -21,6 +22,8 @@ import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 export default function App() {
+  const [showServicesMobile, setShowServicesMobile] = useState(false);
+
   return (
     <div className="bg-bg-main min-h-screen text-text-main select-none selection:bg-brand-cyan/20 selection:text-brand-cyan">
       {/* Floating contact hub */}
@@ -34,12 +37,15 @@ export default function App() {
         <Hero />
 
         {/* Company profile & Core values */}
-        <About />
+        <About onConhecerSolucoes={() => setShowServicesMobile(true)} />
 
         {/* Premium Bento Grid - BIM & Engineering Tech */}
 
         {/* Technical services with blueprint detail triggers */}
-        <Services />
+        <Services
+          showMobile={showServicesMobile}
+          setShowMobile={setShowServicesMobile}
+        />
 
         {/* Delivery methodology sequential tracking */}
         <Process />

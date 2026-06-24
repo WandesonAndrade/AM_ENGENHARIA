@@ -31,6 +31,17 @@ export default function Portfolio() {
     string[] | null
   >(null);
   const [fullscreenImageIndex, setFullscreenImageIndex] = useState<number>(0);
+  const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const categories: { key: ProjectCategory; label: string }[] = [
     { key: "todos", label: "Todos os Projetos" },
@@ -73,11 +84,21 @@ export default function Portfolio() {
     };
   }, [fullscreenImagesList]);
 
+  // Reset showAll when activeCategory changes
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeCategory]);
+
   // Filter projects according to category state
   const filteredProjects =
     activeCategory === "todos"
       ? PROJECTS
       : PROJECTS.filter((p) => p.category === activeCategory);
+
+  const limit = isMobile ? 3 : 6;
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, limit);
 
   const handleConsultProject = (project: Project) => {
     setSelectedProject(null);
@@ -201,7 +222,7 @@ export default function Portfolio() {
 
         {/* Portfolio Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((proj) => {
+          {displayedProjects.map((proj) => {
             const activeImgIndex = projectImageIndexes[proj.id] || 0;
             const imagesList =
               proj.images && proj.images.length > 0
@@ -391,6 +412,25 @@ export default function Portfolio() {
             );
           })}
         </div>
+
+        {/* Ver todos os projetos Button */}
+        {filteredProjects.length > limit && (
+          <div className="flex justify-center mt-12 mb-4">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="font-mono text-xs uppercase tracking-widest px-8 py-4 bg-[#1b1c1c]/60 hover:bg-brand-cyan hover:text-black text-brand-cyan border border-brand-cyan/30 hover:border-transparent transition-all duration-300 cursor-pointer flex items-center space-x-2.5 shadow-[0_0_15px_rgba(64,165,170,0.05)] hover:shadow-[0_0_20px_rgba(64,165,170,0.2)]"
+            >
+              <span>
+                {showAll
+                  ? "MOSTRAR MENOS PROJETOS"
+                  : `VER TODOS OS PROJETOS (${filteredProjects.length})`}
+              </span>
+              <ChevronRight
+                className={`w-4 h-4 transition-transform duration-300 ${showAll ? "-rotate-90" : "rotate-90"}`}
+              />
+            </button>
+          </div>
+        )}
 
         {/* Empty State if filter yields no items */}
         {filteredProjects.length === 0 && (

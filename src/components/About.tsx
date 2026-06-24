@@ -3,10 +3,35 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState, useEffect } from "react";
 import { DIRECTOR_AVATAR } from "../data";
-import { Shield, Clock, Award, Hammer } from "lucide-react";
+import {
+  Shield,
+  Clock,
+  Award,
+  Hammer,
+  ChevronDown,
+  ChevronUp,
+  ChevronRight,
+} from "lucide-react";
 
-export default function About() {
+interface AboutProps {
+  onConhecerSolucoes?: () => void;
+}
+
+export default function About({ onConhecerSolucoes }: AboutProps) {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section
       id="sobre"
@@ -84,32 +109,78 @@ export default function About() {
               das mais modernas e eficientes ferramentas do mercado da
               construção civil.
             </p>
-            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
-              Nosso diferencial está na{" "}
-              <span className="text-white font-semibold">
-                integração de todas as disciplinas
-              </span>{" "}
-              do projeto, oferecendo desde o projeto arquitetônico até as
-              instalações complementares, com alto nível de detalhamento,
-              compatibilização e precisão. Isso proporciona maior
-              previsibilidade, redução de retrabalhos, otimização de custos e
-              mais segurança durante a execução da obra.
-            </p>
-            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
-              Cada projeto é desenvolvido de forma personalizada, sempre em
-              conformidade com as normas técnicas brasileiras vigentes,
-              garantindo qualidade, eficiência e confiabilidade para nossos
-              clientes.
-            </p>
-            <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
-              Na AM Engenharia, não entregamos apenas projetos. Entregamos
-              soluções que transformam ideias em empreendimentos bem planejados,
-              modernos e preparados para o futuro.
-            </p>
-            <p className="font-sans text-sm text-brand-cyan font-semibold leading-relaxed">
-              AM Engenharia – Projetando com tecnologia, construindo com
-              confiança.
-            </p>
+
+            {(!isMobile || isExpanded) && (
+              <>
+                <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+                  Nosso diferencial está na{" "}
+                  <span className="text-white font-semibold">
+                    integração de todas as disciplinas
+                  </span>{" "}
+                  do projeto, oferecendo desde o projeto arquitetônico até as
+                  instalações complementares, com alto nível de detalhamento,
+                  compatibilização e precisão. Isso proporciona maior
+                  previsibilidade, redução de retrabalhos, otimização de custos
+                  e mais segurança durante a execução da obra.
+                </p>
+                <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+                  Cada projeto é desenvolvido de forma personalizada, sempre em
+                  conformidade com as normas técnicas brasileiras vigentes,
+                  garantindo qualidade, eficiência e confiabilidade para nossos
+                  clientes.
+                </p>
+                <p className="font-sans text-sm text-gray-300 leading-relaxed font-light">
+                  Na AM Engenharia, não entregamos apenas projetos. Entregamos
+                  soluções que transformam ideias em empreendimentos bem
+                  planejados, modernos e preparados para o futuro.
+                </p>
+                <p className="font-sans text-sm text-brand-cyan font-semibold leading-relaxed">
+                  AM Engenharia – Projetando com tecnologia, construindo com
+                  confiança.
+                </p>
+              </>
+            )}
+
+            {isMobile && (
+              <div className="flex flex-wrap gap-3 mt-2">
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="font-mono text-[10px] uppercase tracking-wider text-brand-cyan hover:text-white transition-all duration-300 flex items-center space-x-1.5 border border-brand-cyan/25 hover:border-brand-cyan px-4 py-2 bg-brand-cyan/5 hover:bg-brand-cyan/15 cursor-pointer rounded-sm"
+                >
+                  <span>{isExpanded ? "Ler Menos" : "Ler Mais"}</span>
+                  {isExpanded ? (
+                    <ChevronUp className="w-3.5 h-3.5" />
+                  ) : (
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  )}
+                </button>
+
+                <button
+                  onClick={() => {
+                    if (onConhecerSolucoes) {
+                      onConhecerSolucoes();
+                    }
+                    const element = document.getElementById("servicos");
+                    if (element) {
+                      const offset = 80;
+                      const bodyRect =
+                        document.body.getBoundingClientRect().top;
+                      const elementRect = element.getBoundingClientRect().top;
+                      const elementPosition = elementRect - bodyRect;
+                      const offsetPosition = elementPosition - offset;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="font-mono text-[10px] uppercase tracking-wider text-white hover:text-brand-cyan transition-all duration-300 flex items-center space-x-1.5 border border-white/10 hover:border-brand-cyan/40 px-4 py-2 bg-white/5 hover:bg-brand-cyan/5 cursor-pointer rounded-sm"
+                >
+                  <span>Conhecer Soluções</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-brand-cyan animate-pulse" />
+                </button>
+              </div>
+            )}
 
             {/* Industrial Separation Line */}
             <div className="h-[1px] w-full bg-gradient-to-r from-[#343535] to-transparent my-2" />
