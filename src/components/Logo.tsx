@@ -15,7 +15,7 @@ export function LogoIcon({
 }: ImgHTMLAttributes<HTMLImageElement>) {
   return (
     <img
-      src="https://raw.githubusercontent.com/WandesonAndrade/AM_ENGENHARIA/refs/heads/main/public/icone.png"
+      src="./public/icone.png"
       alt="AM Engenharia Logo"
       className={`${className} object-contain`}
       referrerPolicy="no-referrer"
